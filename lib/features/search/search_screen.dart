@@ -204,7 +204,7 @@ class SearchScreen extends HookConsumerWidget {
           width: 48,
           height: 48,
           decoration: BoxDecoration(
-            color: AppTheme.urgencyRed.withOpacity(0.1),
+            color: AppTheme.urgencyRed.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(24),
           ),
           child: const Icon(
@@ -228,7 +228,7 @@ class SearchScreen extends HookConsumerWidget {
           width: 48,
           height: 48,
           decoration: BoxDecoration(
-            color: AppTheme.primaryTeal.withOpacity(0.1),
+            color: AppTheme.primaryTeal.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(24),
           ),
           child: const Icon(
@@ -252,7 +252,7 @@ class SearchScreen extends HookConsumerWidget {
           width: 48,
           height: 48,
           decoration: BoxDecoration(
-            color: AppTheme.urgencyYellow.withOpacity(0.1),
+            color: AppTheme.urgencyYellow.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(24),
           ),
           child: const Icon(
@@ -276,7 +276,7 @@ class SearchScreen extends HookConsumerWidget {
           width: 48,
           height: 48,
           decoration: BoxDecoration(
-            color: AppTheme.primaryTeal.withOpacity(0.1),
+            color: AppTheme.primaryTeal.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(24),
           ),
           child: const Icon(

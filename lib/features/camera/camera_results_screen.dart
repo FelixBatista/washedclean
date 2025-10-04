@@ -64,7 +64,7 @@ class CameraResultsScreen extends ConsumerWidget {
                 Text(
                   '${careSymbols.length} care symbols found',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppTheme.white.withOpacity(0.9),
+                    color: AppTheme.white.withValues(alpha: 0.9),
                   ),
                 ),
               ],

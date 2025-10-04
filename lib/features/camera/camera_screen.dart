@@ -89,7 +89,7 @@ class CameraScreen extends HookConsumerWidget {
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.3),
+                color: Colors.black.withValues(alpha: 0.3),
               ),
               child: Center(
                 child: Container(
@@ -176,7 +176,7 @@ class CameraScreen extends HookConsumerWidget {
             child: Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.7),
+                color: Colors.black.withValues(alpha: 0.7),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Text(

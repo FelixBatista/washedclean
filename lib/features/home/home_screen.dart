@@ -249,7 +249,7 @@ class HomeScreen extends HookConsumerWidget {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
+              color: Colors.black.withValues(alpha: 0.05),
               blurRadius: 8,
               offset: const Offset(0, 2),
             ),
@@ -261,7 +261,7 @@ class HomeScreen extends HookConsumerWidget {
               width: 48,
               height: 48,
               decoration: BoxDecoration(
-                color: color.withOpacity(0.1),
+                color: color.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(24),
               ),
               child: Icon(

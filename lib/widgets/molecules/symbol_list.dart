@@ -38,7 +38,7 @@ class SymbolList extends StatelessWidget {
                 color: AppTheme.lightTeal,
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(
-                  color: AppTheme.primaryTeal.withOpacity(0.3),
+                  color: AppTheme.primaryTeal.withValues(alpha: 0.3),
                 ),
               ),
               child: const Icon(

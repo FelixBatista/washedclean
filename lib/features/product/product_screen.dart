@@ -102,9 +102,9 @@ class ProductScreen extends ConsumerWidget {
                       width: double.infinity,
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: AppTheme.urgencyRed.withOpacity(0.1),
+                        color: AppTheme.urgencyRed.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: AppTheme.urgencyRed.withOpacity(0.3)),
+                        border: Border.all(color: AppTheme.urgencyRed.withValues(alpha: 0.3)),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -223,10 +223,10 @@ class ProductScreen extends ConsumerWidget {
                           child: Container(
                             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                             decoration: BoxDecoration(
-                              color: AppTheme.urgencyRed.withOpacity(0.1),
+                              color: AppTheme.urgencyRed.withValues(alpha: 0.1),
                               borderRadius: BorderRadius.circular(16),
                               border: Border.all(
-                                color: AppTheme.urgencyRed.withOpacity(0.3),
+                                color: AppTheme.urgencyRed.withValues(alpha: 0.3),
                               ),
                             ),
                             child: Text(
@@ -267,10 +267,10 @@ class ProductScreen extends ConsumerWidget {
                           child: Container(
                             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                             decoration: BoxDecoration(
-                              color: AppTheme.primaryTeal.withOpacity(0.1),
+                              color: AppTheme.primaryTeal.withValues(alpha: 0.1),
                               borderRadius: BorderRadius.circular(16),
                               border: Border.all(
-                                color: AppTheme.primaryTeal.withOpacity(0.3),
+                                color: AppTheme.primaryTeal.withValues(alpha: 0.3),
                               ),
                             ),
                             child: Text(

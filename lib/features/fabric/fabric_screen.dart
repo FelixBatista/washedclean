@@ -154,10 +154,10 @@ class FabricScreen extends ConsumerWidget {
                           child: Container(
                             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                             decoration: BoxDecoration(
-                              color: AppTheme.urgencyRed.withOpacity(0.1),
+                              color: AppTheme.urgencyRed.withValues(alpha: 0.1),
                               borderRadius: BorderRadius.circular(16),
                               border: Border.all(
-                                color: AppTheme.urgencyRed.withOpacity(0.3),
+                                color: AppTheme.urgencyRed.withValues(alpha: 0.3),
                               ),
                             ),
                             child: Text(
@@ -197,7 +197,7 @@ class FabricScreen extends ConsumerWidget {
                             width: 48,
                             height: 48,
                             decoration: BoxDecoration(
-                              color: AppTheme.primaryTeal.withOpacity(0.1),
+                              color: AppTheme.primaryTeal.withValues(alpha: 0.1),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: const Icon(

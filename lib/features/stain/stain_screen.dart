@@ -187,7 +187,7 @@ class StainScreen extends HookConsumerWidget {
                           width: double.infinity,
                           padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
-                            color: AppTheme.lightTeal.withOpacity(0.3),
+                            color: AppTheme.lightTeal.withValues(alpha: 0.3),
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Text(
@@ -234,7 +234,7 @@ class StainScreen extends HookConsumerWidget {
                       width: 48,
                       height: 48,
                       decoration: BoxDecoration(
-                        color: AppTheme.primaryTeal.withOpacity(0.1),
+                        color: AppTheme.primaryTeal.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: const Icon(

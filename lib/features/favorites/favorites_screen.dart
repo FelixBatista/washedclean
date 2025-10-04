@@ -298,7 +298,7 @@ class FavoritesScreen extends HookConsumerWidget {
           width: 48,
           height: 48,
           decoration: BoxDecoration(
-            color: item.color.withOpacity(0.1),
+            color: item.color.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(8),
           ),
           child: Icon(
