@@ -1,0 +1,90 @@
+# Flutter/Dart/Pub related
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+flutter_*.png
+coverage/
+generated_plugin_registrant.dart
+
+# Symbolic links created by pub
+symlinks/
+
+# IntelliJ / Android Studio
+*.iml
+.idea/
+*.ipr
+*.iws
+
+# VS Code
+.vscode/
+.history/
+
+# Xcode
+**/DerivedData/
+*.xcworkspace/
+!default.xcworkspace/
+*.xcuserstate
+*.moved-aside
+*.xcuserdatad/
+*.xcsettings
+
+# Android
+.gradle/
+**/gradle-wrapper.jar
+**/gradle/
+local.properties
+*.log
+
+# iOS
+Pods/
+Podfile.lock
+.flutter-plugins
+.flutter-plugins-dependencies
+.xcarchive
+
+# Windows
+windows/runner/Debug/
+windows/runner/Release/
+windows/runner/Profile/
+
+# Linux
+linux/flutter/
+linux/Debug/
+linux/Release/
+
+# macOS
+macos/Flutter/ephemeral/
+macos/Pods/
+
+# Web
+lib/generated_plugin_registrant.dart
+web/.dart_tool/
+web/.flutter-plugins
+
+# Other IDEs and editors
+*.swp
+*.swo
+*.tmp
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+desktop.ini
+
+# Environment files (if used)
+.env
+.env.*
+
+# Firebase / Google services (optional — ignore if sensitive)
+google-services.json
+GoogleService-Info.plist
+
+# Temporary files
+*.bak
+*.old
+*.orig
+*.rej
