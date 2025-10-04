@@ -1,15 +1,4 @@
 class Product {
-  final String id;
-  final String name;
-  final String image;
-  final String subtitle;
-  final String ingredientsMd;
-  final String howToUseMd;
-  final List<String> allergenFlags;
-  final List<String> removesStains;
-  final List<String> fitsFabrics;
-  final String affiliateUrl;
-
   const Product({
     required this.id,
     required this.name,
@@ -40,6 +29,17 @@ class Product {
       affiliateUrl: json['affiliate_url'] as String,
     );
   }
+
+  final String id;
+  final String name;
+  final String image;
+  final String subtitle;
+  final String ingredientsMd;
+  final String howToUseMd;
+  final List<String> allergenFlags;
+  final List<String> removesStains;
+  final List<String> fitsFabrics;
+  final String affiliateUrl;
 
   Map<String, dynamic> toJson() {
     return {

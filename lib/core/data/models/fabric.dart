@@ -1,12 +1,4 @@
 class Fabric {
-  final String id;
-  final String name;
-  final String image;
-  final String overviewMd;
-  final String stepsMd;
-  final List<String> commonStains;
-  final List<String> recommendedProducts;
-
   const Fabric({
     required this.id,
     required this.name,
@@ -30,6 +22,14 @@ class Fabric {
           ?.cast<String>() ?? [],
     );
   }
+
+  final String id;
+  final String name;
+  final String image;
+  final String overviewMd;
+  final String stepsMd;
+  final List<String> commonStains;
+  final List<String> recommendedProducts;
 
   Map<String, dynamic> toJson() {
     return {

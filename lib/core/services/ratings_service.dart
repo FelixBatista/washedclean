@@ -9,11 +9,11 @@ final ratingsServiceProvider = StateNotifierProvider<RatingsService, Map<String,
 });
 
 class RatingsService extends StateNotifier<Map<String, RatingType>> {
-  static const String _key = 'ratings';
-
   RatingsService() : super({}) {
     _loadRatings();
   }
+
+  static const String _key = 'ratings';
 
   Future<void> _loadRatings() async {
     try {

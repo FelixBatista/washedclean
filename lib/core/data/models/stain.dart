@@ -1,12 +1,4 @@
 class Stain {
-  final String id;
-  final String name;
-  final String urgency;
-  final String summary;
-  final List<StainByFabric> byFabric;
-  final List<String> relatedProducts;
-  final List<String> relatedFabrics;
-
   const Stain({
     required this.id,
     required this.name,
@@ -33,6 +25,14 @@ class Stain {
     );
   }
 
+  final String id;
+  final String name;
+  final String urgency;
+  final String summary;
+  final List<StainByFabric> byFabric;
+  final List<String> relatedProducts;
+  final List<String> relatedFabrics;
+
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -47,13 +47,6 @@ class Stain {
 }
 
 class StainByFabric {
-  final String fabricId;
-  final String stepsMd;
-  final List<String> recommendedProducts;
-  final String? tipsMd;
-  final int ratingUp;
-  final int ratingDown;
-
   const StainByFabric({
     required this.fabricId,
     required this.stepsMd,
@@ -74,6 +67,13 @@ class StainByFabric {
       ratingDown: json['rating_down'] as int? ?? 0,
     );
   }
+
+  final String fabricId;
+  final String stepsMd;
+  final List<String> recommendedProducts;
+  final String? tipsMd;
+  final int ratingUp;
+  final int ratingDown;
 
   Map<String, dynamic> toJson() {
     return {

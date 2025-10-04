@@ -1,9 +1,4 @@
 class CareSymbol {
-  final String id;
-  final String glyph;
-  final String title;
-  final String explanation;
-
   const CareSymbol({
     required this.id,
     required this.glyph,
@@ -19,6 +14,11 @@ class CareSymbol {
       explanation: json['explanation'] as String,
     );
   }
+
+  final String id;
+  final String glyph;
+  final String title;
+  final String explanation;
 
   Map<String, dynamic> toJson() {
     return {

@@ -248,9 +248,8 @@ class StainScreen extends HookConsumerWidget {
                     onTap: () => context.go('/product/${product.id}'),
                   ),
                 );
-              }).toList(),
+              }),
             ],
-          ],
         ),
       ),
     );

@@ -30,7 +30,7 @@ class CameraScreen extends HookConsumerWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
+                const Icon(
                   Icons.camera_alt_outlined,
                   size: 64,
                   color: AppTheme.mediumGray,

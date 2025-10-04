@@ -26,9 +26,9 @@ class SearchResult {
 }
 
 class SearchService {
-  final ContentService _contentService;
-
   SearchService(this._contentService);
+
+  final ContentService _contentService;
 
   List<SearchResult> search(String query) {
     if (query.trim().isEmpty) return [];

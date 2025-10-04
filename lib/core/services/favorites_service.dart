@@ -7,11 +7,11 @@ final favoritesServiceProvider = StateNotifierProvider<FavoritesService, Set<Str
 });
 
 class FavoritesService extends StateNotifier<Set<String>> {
-  static const String _key = 'favorites';
-
   FavoritesService() : super({}) {
     _loadFavorites();
   }
+
+  static const String _key = 'favorites';
 
   Future<void> _loadFavorites() async {
     try {

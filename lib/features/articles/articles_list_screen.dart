@@ -44,7 +44,7 @@ class ArticlesListScreen extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
+            const Icon(
               Icons.article_outlined,
               size: 64,
               color: AppTheme.mediumGray,

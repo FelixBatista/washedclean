@@ -228,7 +228,7 @@ class FavoritesScreen extends HookConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
+            const Icon(
               Icons.favorite_border,
               size: 64,
               color: AppTheme.mediumGray,
@@ -261,7 +261,7 @@ class FavoritesScreen extends HookConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
+            const Icon(
               Icons.filter_list_off,
               size: 64,
               color: AppTheme.mediumGray,

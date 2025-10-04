@@ -89,7 +89,7 @@ class CameraResultsScreen extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
+            const Icon(
               Icons.search_off,
               size: 64,
               color: AppTheme.mediumGray,

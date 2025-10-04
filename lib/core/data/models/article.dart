@@ -1,14 +1,4 @@
 class Article {
-  final String id;
-  final String title;
-  final String subtitle;
-  final String image;
-  final String bodyMd;
-  final CtaButton? cta;
-  final List<String> tags;
-  final bool featured;
-  final String lang;
-
   const Article({
     required this.id,
     required this.title,
@@ -35,6 +25,16 @@ class Article {
     );
   }
 
+  final String id;
+  final String title;
+  final String subtitle;
+  final String image;
+  final String bodyMd;
+  final CtaButton? cta;
+  final List<String> tags;
+  final bool featured;
+  final String lang;
+
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -51,9 +51,6 @@ class Article {
 }
 
 class CtaButton {
-  final String label;
-  final String route;
-
   const CtaButton({
     required this.label,
     required this.route,
@@ -65,6 +62,9 @@ class CtaButton {
       route: json['route'] as String,
     );
   }
+
+  final String label;
+  final String route;
 
   Map<String, dynamic> toJson() {
     return {
