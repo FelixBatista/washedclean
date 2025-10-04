@@ -79,13 +79,34 @@ flutter:
   fonts:
     - family: Cocogoose
       fonts:
-        - asset: assets/fonts/Cocogoose-Regular.ttf
-        - asset: assets/fonts/Cocogoose-Bold.ttf
-          weight: 700
-    - family: Avenir
+        - asset: assets/fonts/Cocogoose Pro-trial.ttf
+          weight: 400
+        - asset: assets/fonts/Cocogoose Pro Light-trial.ttf
+          weight: 300
+        - asset: assets/fonts/Cocogoose Pro Semilight-trial.ttf
+          weight: 400
+        - asset: assets/fonts/Cocogoose Pro Thin-trial.ttf
+          weight: 100
+        - asset: assets/fonts/Cocogoose Pro UltraLight-trial.ttf
+          weight: 200
+        - asset: assets/fonts/Cocogoose Pro Ultralight-trial.ttf
+          weight: 200
+        - asset: assets/fonts/Cocogoose Pro Italic-trial.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/Cocogoose Pro Light Italic-trial.ttf
+          weight: 300
+          style: italic
+        - asset: assets/fonts/Cocogoose Pro Semilight Italic-trial.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/Cocogoose Pro Thin Italic-trial.ttf
+          weight: 100
+          style: italic
+        - asset: assets/fonts/Cocogoose Pro UltraLight Italic-trial.ttf
+          weight: 200
+          style: italic
+    - family: AvenirCondensed
       fonts:
-        - asset: assets/fonts/Avenir-Regular.ttf
-        - asset: assets/fonts/Avenir-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/Avenir-Bold.ttf
-          weight: 700
+        - asset: assets/fonts/AvenirCondensedHand.ttf
+          weight: 400
