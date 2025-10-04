@@ -1,0 +1,116 @@
+[
+  {
+    "id": "wash_30",
+    "glyph": "assets/symbols/wash_30.svg",
+    "title": "Machine wash 30°C",
+    "explanation": "Wash at or below 30°C (86°F). Use gentle cycle for delicate fabrics."
+  },
+  {
+    "id": "wash_40",
+    "glyph": "assets/symbols/wash_40.svg",
+    "title": "Machine wash 40°C",
+    "explanation": "Wash at or below 40°C (104°F). Normal cycle for cotton and synthetic fabrics."
+  },
+  {
+    "id": "wash_60",
+    "glyph": "assets/symbols/wash_60.svg",
+    "title": "Machine wash 60°C",
+    "explanation": "Wash at or below 60°C (140°F). Hot water for heavily soiled items."
+  },
+  {
+    "id": "wash_95",
+    "glyph": "assets/symbols/wash_95.svg",
+    "title": "Machine wash 95°C",
+    "explanation": "Wash at or below 95°C (203°F). Very hot water for white cotton and linen."
+  },
+  {
+    "id": "hand_wash",
+    "glyph": "assets/symbols/hand_wash.svg",
+    "title": "Hand wash only",
+    "explanation": "Hand wash in cool water with gentle detergent. Do not machine wash."
+  },
+  {
+    "id": "do_not_wash",
+    "glyph": "assets/symbols/do_not_wash.svg",
+    "title": "Do not wash",
+    "explanation": "Do not wash. Take to dry cleaner or spot clean only."
+  },
+  {
+    "id": "bleach_ok",
+    "glyph": "assets/symbols/bleach_ok.svg",
+    "title": "Bleach when needed",
+    "explanation": "Bleaching with chlorine bleach is allowed when needed."
+  },
+  {
+    "id": "bleach_no",
+    "glyph": "assets/symbols/bleach_no.svg",
+    "title": "Do not bleach",
+    "explanation": "Do not use chlorine bleach. Use oxygen bleach if needed."
+  },
+  {
+    "id": "tumble_dry_low",
+    "glyph": "assets/symbols/tumble_dry_low.svg",
+    "title": "Tumble dry low heat",
+    "explanation": "Tumble dry on low heat setting. Remove promptly to prevent wrinkles."
+  },
+  {
+    "id": "tumble_dry_medium",
+    "glyph": "assets/symbols/tumble_dry_medium.svg",
+    "title": "Tumble dry medium heat",
+    "explanation": "Tumble dry on medium heat setting. Normal drying for most fabrics."
+  },
+  {
+    "id": "tumble_dry_high",
+    "glyph": "assets/symbols/tumble_dry_high.svg",
+    "title": "Tumble dry high heat",
+    "explanation": "Tumble dry on high heat setting. For cotton and other durable fabrics."
+  },
+  {
+    "id": "do_not_tumble_dry",
+    "glyph": "assets/symbols/do_not_tumble_dry.svg",
+    "title": "Do not tumble dry",
+    "explanation": "Do not tumble dry. Air dry or lay flat to dry."
+  },
+  {
+    "id": "iron_low",
+    "glyph": "assets/symbols/iron_low.svg",
+    "title": "Iron low heat",
+    "explanation": "Iron on low heat setting (110°C/230°F). Use for delicate fabrics."
+  },
+  {
+    "id": "iron_medium",
+    "glyph": "assets/symbols/iron_medium.svg",
+    "title": "Iron medium heat",
+    "explanation": "Iron on medium heat setting (150°C/300°F). Normal ironing for most fabrics."
+  },
+  {
+    "id": "iron_high",
+    "glyph": "assets/symbols/iron_high.svg",
+    "title": "Iron high heat",
+    "explanation": "Iron on high heat setting (200°C/390°F). For cotton and linen."
+  },
+  {
+    "id": "do_not_iron",
+    "glyph": "assets/symbols/do_not_iron.svg",
+    "title": "Do not iron",
+    "explanation": "Do not iron. Fabric may melt or be damaged by heat."
+  },
+  {
+    "id": "dry_clean",
+    "glyph": "assets/symbols/dry_clean.svg",
+    "title": "Dry clean only",
+    "explanation": "Professional dry cleaning required. Do not wash with water."
+  },
+  {
+    "id": "dry_clean_p",
+    "glyph": "assets/symbols/dry_clean_p.svg",
+    "title": "Dry clean with P solvent",
+    "explanation": "Dry clean with perchloroethylene solvent only."
+  },
+  {
+    "id": "do_not_dry_clean",
+    "glyph": "assets/symbols/do_not_dry_clean.svg",
+    "title": "Do not dry clean",
+    "explanation": "Do not dry clean. Wash normally or spot clean only."
+  }
+]

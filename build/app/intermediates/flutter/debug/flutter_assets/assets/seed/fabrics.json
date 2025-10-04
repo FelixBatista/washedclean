@@ -1,0 +1,74 @@
+[
+  {
+    "id": "fabric_cotton",
+    "name": "Cotton",
+    "image": "assets/images/fabrics/cotton.jpg",
+    "overview_md": "Cotton is a natural fiber that's durable, breathable, and easy to care for. It's one of the most common fabrics in clothing and household items.",
+    "steps_md": "1) **Sort** by color (whites, lights, darks)\n2) **Wash** in warm or hot water\n3) **Use** regular detergent\n4) **Tumble dry** on medium heat\n5) **Iron** while slightly damp for best results",
+    "common_stains": ["stain_red_wine", "stain_grease", "stain_grass", "stain_coffee"],
+    "recommended_products": ["prod_vanish", "prod_oxy_clean", "prod_dawn"]
+  },
+  {
+    "id": "fabric_wool",
+    "name": "Wool",
+    "image": "assets/images/fabrics/wool.jpg",
+    "overview_md": "Wool is a natural fiber that provides excellent insulation and moisture-wicking properties. It requires gentle care to prevent shrinking and felting.",
+    "steps_md": "1) **Check** care label for specific instructions\n2) **Wash** in cold water with wool detergent\n3) **Hand wash** or use delicate cycle\n4) **Lay flat** to dry\n5) **Avoid** wringing or twisting",
+    "common_stains": ["stain_sweat", "stain_makeup"],
+    "recommended_products": ["prod_wool_detergent", "prod_dry_clean"]
+  },
+  {
+    "id": "fabric_silk",
+    "name": "Silk",
+    "image": "assets/images/fabrics/silk.jpg",
+    "overview_md": "Silk is a luxurious natural fiber that's delicate and requires special care. It's known for its smooth texture and natural sheen.",
+    "steps_md": "1) **Check** care label carefully\n2) **Hand wash** in cold water with silk detergent\n3) **Gently** agitate without rubbing\n4) **Rinse** thoroughly in cold water\n5) **Roll** in towel to remove excess water\n6) **Lay flat** to dry away from direct sunlight",
+    "common_stains": ["stain_red_wine", "stain_makeup", "stain_sweat"],
+    "recommended_products": ["prod_silk_detergent", "prod_dry_clean"]
+  },
+  {
+    "id": "fabric_polyester",
+    "name": "Polyester",
+    "image": "assets/images/fabrics/polyester.jpg",
+    "overview_md": "Polyester is a synthetic fiber that's durable, wrinkle-resistant, and easy to care for. It's commonly blended with other fibers.",
+    "steps_md": "1) **Sort** by color\n2) **Wash** in warm water\n3) **Use** regular detergent\n4) **Tumble dry** on low heat\n5) **Remove** promptly to prevent wrinkles",
+    "common_stains": ["stain_grease", "stain_oil", "stain_makeup"],
+    "recommended_products": ["prod_dawn", "prod_grease_remover"]
+  },
+  {
+    "id": "fabric_denim",
+    "name": "Denim",
+    "image": "assets/images/fabrics/denim.jpg",
+    "overview_md": "Denim is a sturdy cotton twill fabric, typically blue, used for jeans and other clothing. It can be washed frequently without damage.",
+    "steps_md": "1) **Turn** inside out before washing\n2) **Wash** in cold water to prevent fading\n3) **Use** gentle detergent\n4) **Tumble dry** on low heat\n5) **Remove** while slightly damp to prevent wrinkles",
+    "common_stains": ["stain_mud", "stain_grease", "stain_grass"],
+    "recommended_products": ["prod_vanish", "prod_oxy_clean"]
+  },
+  {
+    "id": "fabric_linen",
+    "name": "Linen",
+    "image": "assets/images/fabrics/linen.jpg",
+    "overview_md": "Linen is a natural fiber made from flax plants. It's strong, absorbent, and becomes softer with each wash, but wrinkles easily.",
+    "steps_md": "1) **Wash** in warm or hot water\n2) **Use** regular detergent\n3) **Tumble dry** on medium heat\n4) **Iron** while damp for best results\n5) **Accept** some wrinkles as part of linen's character",
+    "common_stains": ["stain_coffee", "stain_wine", "stain_sweat"],
+    "recommended_products": ["prod_vanish", "prod_oxy_clean"]
+  },
+  {
+    "id": "fabric_acrylic",
+    "name": "Acrylic",
+    "image": "assets/images/fabrics/acrylic.jpg",
+    "overview_md": "Acrylic is a synthetic fiber that mimics wool's properties. It's soft, warm, and machine washable, making it popular for sweaters and blankets.",
+    "steps_md": "1) **Wash** in cold water\n2) **Use** gentle detergent\n3) **Tumble dry** on low heat\n4) **Remove** promptly to prevent stretching\n5) **Avoid** high heat which can cause pilling",
+    "common_stains": ["stain_sweat", "stain_makeup"],
+    "recommended_products": ["prod_gentle_detergent"]
+  },
+  {
+    "id": "fabric_nylon",
+    "name": "Nylon",
+    "image": "assets/images/fabrics/nylon.jpg",
+    "overview_md": "Nylon is a strong synthetic fiber that's lightweight, quick-drying, and resistant to abrasion. It's commonly used in activewear and hosiery.",
+    "steps_md": "1) **Wash** in cold water\n2) **Use** gentle detergent\n3) **Tumble dry** on low heat\n4) **Avoid** fabric softener which can reduce moisture-wicking\n5) **Remove** promptly to prevent wrinkles",
+    "common_stains": ["stain_sweat", "stain_oil"],
+    "recommended_products": ["prod_sport_detergent"]
+  }
+]

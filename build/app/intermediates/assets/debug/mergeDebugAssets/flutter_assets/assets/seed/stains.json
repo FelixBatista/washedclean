@@ -1,0 +1,226 @@
+[
+  {
+    "id": "stain_red_wine",
+    "name": "Red Wine",
+    "urgency": "red",
+    "summary": "Act now, don't let it dry!",
+    "by_fabric": [
+      {
+        "fabric_id": "fabric_cotton",
+        "steps_md": "1) **Blot immediately** with clean white cloth\n2) **Rinse** with cold water from back of stain\n3) **Apply** white wine or club soda\n4) **Blot** again until no more color transfers\n5) **Wash** in cold water with enzyme detergent\n6) **Air dry** - check before tumble drying",
+        "recommended_products": ["prod_vanish", "prod_oxy_clean"],
+        "tips_md": "White wine works better than red wine for removing red wine stains. The alcohol helps break down the tannins.",
+        "rating_up": 123,
+        "rating_down": 7
+      },
+      {
+        "fabric_id": "fabric_silk",
+        "steps_md": "1) **Blot gently** with clean white cloth\n2) **Rinse** with cold water\n3) **Apply** white wine or club soda\n4) **Blot** carefully to avoid damaging fabric\n5) **Take to dry cleaner** if stain persists",
+        "recommended_products": ["prod_dry_clean"],
+        "tips_md": "Silk is delicate - avoid rubbing and use gentle blotting motions only.",
+        "rating_up": 89,
+        "rating_down": 12
+      }
+    ],
+    "related_products": ["prod_vanish", "prod_oxy_clean", "prod_dry_clean"],
+    "related_fabrics": ["fabric_cotton", "fabric_silk", "fabric_polyester"]
+  },
+  {
+    "id": "stain_grease",
+    "name": "Grease",
+    "urgency": "yellow",
+    "summary": "Treat before washing to prevent setting",
+    "by_fabric": [
+      {
+        "fabric_id": "fabric_cotton",
+        "steps_md": "1) **Scrape off** excess grease with dull knife\n2) **Apply** dish soap or degreasing agent\n3) **Gently work** into fabric with fingers\n4) **Let sit** for 10-15 minutes\n5) **Wash** in hottest water safe for fabric\n6) **Check** before drying - repeat if needed",
+        "recommended_products": ["prod_dawn", "prod_grease_remover"],
+        "tips_md": "Dish soap is excellent for grease stains because it's designed to cut through oils.",
+        "rating_up": 156,
+        "rating_down": 4
+      }
+    ],
+    "related_products": ["prod_dawn", "prod_grease_remover"],
+    "related_fabrics": ["fabric_cotton", "fabric_polyester", "fabric_denim"]
+  },
+  {
+    "id": "stain_grass",
+    "name": "Grass",
+    "urgency": "green",
+    "summary": "Chlorophyll stains can be stubborn but treatable",
+    "by_fabric": [
+      {
+        "fabric_id": "fabric_cotton",
+        "steps_md": "1) **Rinse** with cold water immediately\n2) **Apply** enzyme detergent or stain remover\n3) **Let sit** for 30 minutes\n4) **Wash** in warm water\n5) **Air dry** in sunlight if possible\n6) **Repeat** if stain persists",
+        "recommended_products": ["prod_vanish", "prod_oxy_clean"],
+        "tips_md": "Sunlight helps break down chlorophyll naturally. Fresh grass stains are easier to remove than dried ones.",
+        "rating_up": 98,
+        "rating_down": 6
+      }
+    ],
+    "related_products": ["prod_vanish", "prod_oxy_clean"],
+    "related_fabrics": ["fabric_cotton", "fabric_polyester", "fabric_denim"]
+  },
+  {
+    "id": "stain_coffee",
+    "name": "Coffee",
+    "urgency": "red",
+    "summary": "Quick action prevents permanent staining",
+    "by_fabric": [
+      {
+        "fabric_id": "fabric_cotton",
+        "steps_md": "1) **Blot** excess coffee with clean cloth\n2) **Rinse** with cold water from back of stain\n3) **Apply** white vinegar or club soda\n4) **Blot** until no more color transfers\n5) **Wash** in cold water with enzyme detergent\n6) **Air dry** to check results",
+        "recommended_products": ["prod_vanish", "prod_oxy_clean"],
+        "tips_md": "Cold water prevents the stain from setting. Hot water will make it permanent.",
+        "rating_up": 134,
+        "rating_down": 8
+      }
+    ],
+    "related_products": ["prod_vanish", "prod_oxy_clean"],
+    "related_fabrics": ["fabric_cotton", "fabric_polyester"]
+  },
+  {
+    "id": "stain_ketchup",
+    "name": "Ketchup",
+    "urgency": "yellow",
+    "summary": "Tomato-based stains need special care",
+    "by_fabric": [
+      {
+        "fabric_id": "fabric_cotton",
+        "steps_md": "1) **Scrape off** excess ketchup\n2) **Rinse** with cold water\n3) **Apply** enzyme detergent\n4) **Let sit** for 15 minutes\n5) **Wash** in warm water\n6) **Check** before drying",
+        "recommended_products": ["prod_vanish", "prod_oxy_clean"],
+        "tips_md": "The acid in ketchup can set the stain, so treat quickly with cold water first.",
+        "rating_up": 87,
+        "rating_down": 5
+      }
+    ],
+    "related_products": ["prod_vanish", "prod_oxy_clean"],
+    "related_fabrics": ["fabric_cotton", "fabric_polyester"]
+  },
+  {
+    "id": "stain_blood",
+    "name": "Blood",
+    "urgency": "red",
+    "summary": "Cold water only - heat sets blood stains",
+    "by_fabric": [
+      {
+        "fabric_id": "fabric_cotton",
+        "steps_md": "1) **Rinse** with cold water immediately\n2) **Apply** hydrogen peroxide (test first)\n3) **Blot** gently - don't rub\n4) **Rinse** with cold water\n5) **Wash** in cold water only\n6) **Air dry** to check results",
+        "recommended_products": ["prod_hydrogen_peroxide"],
+        "tips_md": "Never use hot water on blood stains - it will set them permanently. Hydrogen peroxide works well but test on hidden area first.",
+        "rating_up": 112,
+        "rating_down": 9
+      }
+    ],
+    "related_products": ["prod_hydrogen_peroxide"],
+    "related_fabrics": ["fabric_cotton", "fabric_polyester"]
+  },
+  {
+    "id": "stain_makeup",
+    "name": "Makeup",
+    "urgency": "yellow",
+    "summary": "Oil-based stains need special treatment",
+    "by_fabric": [
+      {
+        "fabric_id": "fabric_cotton",
+        "steps_md": "1) **Blot** excess makeup\n2) **Apply** dish soap or makeup remover\n3) **Gently work** into fabric\n4) **Let sit** for 10 minutes\n5) **Wash** in warm water\n6) **Check** before drying",
+        "recommended_products": ["prod_dawn", "prod_makeup_remover"],
+        "tips_md": "Makeup removers work well on fabric too. Test on hidden area first.",
+        "rating_up": 76,
+        "rating_down": 3
+      }
+    ],
+    "related_products": ["prod_dawn", "prod_makeup_remover"],
+    "related_fabrics": ["fabric_cotton", "fabric_polyester", "fabric_silk"]
+  },
+  {
+    "id": "stain_ink",
+    "name": "Ink",
+    "urgency": "red",
+    "summary": "Act fast - ink stains are difficult to remove",
+    "by_fabric": [
+      {
+        "fabric_id": "fabric_cotton",
+        "steps_md": "1) **Blot** excess ink with paper towel\n2) **Apply** rubbing alcohol or hairspray\n3) **Blot** from back of stain\n4) **Rinse** with cold water\n5) **Repeat** if necessary\n6) **Wash** in cold water",
+        "recommended_products": ["prod_rubbing_alcohol"],
+        "tips_md": "Rubbing alcohol works well on ballpoint ink. Hairspray can also work in a pinch.",
+        "rating_up": 95,
+        "rating_down": 11
+      }
+    ],
+    "related_products": ["prod_rubbing_alcohol"],
+    "related_fabrics": ["fabric_cotton", "fabric_polyester"]
+  },
+  {
+    "id": "stain_sweat",
+    "name": "Sweat",
+    "urgency": "green",
+    "summary": "Body oils and salt can cause yellowing",
+    "by_fabric": [
+      {
+        "fabric_id": "fabric_cotton",
+        "steps_md": "1) **Pre-treat** with enzyme detergent\n2) **Let sit** for 30 minutes\n3) **Wash** in warm water\n4) **Add** white vinegar to rinse cycle\n5) **Air dry** in sunlight\n6) **Repeat** if needed",
+        "recommended_products": ["prod_vanish", "prod_oxy_clean"],
+        "tips_md": "White vinegar helps remove body oils and odors. Sunlight also helps brighten whites.",
+        "rating_up": 143,
+        "rating_down": 7
+      }
+    ],
+    "related_products": ["prod_vanish", "prod_oxy_clean"],
+    "related_fabrics": ["fabric_cotton", "fabric_polyester", "fabric_wool"]
+  },
+  {
+    "id": "stain_chocolate",
+    "name": "Chocolate",
+    "urgency": "yellow",
+    "summary": "Sweet stains need enzyme treatment",
+    "by_fabric": [
+      {
+        "fabric_id": "fabric_cotton",
+        "steps_md": "1) **Scrape off** excess chocolate\n2) **Rinse** with cold water\n3) **Apply** enzyme detergent\n4) **Let sit** for 30 minutes\n5) **Wash** in warm water\n6) **Check** before drying",
+        "recommended_products": ["prod_vanish", "prod_oxy_clean"],
+        "tips_md": "Enzyme detergents work well on organic stains like chocolate. The longer you let it sit, the better.",
+        "rating_up": 89,
+        "rating_down": 4
+      }
+    ],
+    "related_products": ["prod_vanish", "prod_oxy_clean"],
+    "related_fabrics": ["fabric_cotton", "fabric_polyester"]
+  },
+  {
+    "id": "stain_oil",
+    "name": "Cooking Oil",
+    "urgency": "yellow",
+    "summary": "Oil stains need degreasing treatment",
+    "by_fabric": [
+      {
+        "fabric_id": "fabric_cotton",
+        "steps_md": "1) **Blot** excess oil\n2) **Apply** dish soap or degreaser\n3) **Work** into fabric gently\n4) **Let sit** for 15 minutes\n5) **Wash** in hottest water safe for fabric\n6) **Check** before drying",
+        "recommended_products": ["prod_dawn", "prod_grease_remover"],
+        "tips_md": "Dish soap is excellent for oil stains. The hotter the water, the better for oil removal.",
+        "rating_up": 167,
+        "rating_down": 6
+      }
+    ],
+    "related_products": ["prod_dawn", "prod_grease_remover"],
+    "related_fabrics": ["fabric_cotton", "fabric_polyester", "fabric_denim"]
+  },
+  {
+    "id": "stain_mud",
+    "name": "Mud",
+    "urgency": "green",
+    "summary": "Let dry first, then brush off excess",
+    "by_fabric": [
+      {
+        "fabric_id": "fabric_cotton",
+        "steps_md": "1) **Let dry** completely\n2) **Brush off** excess mud\n3) **Pre-treat** with enzyme detergent\n4) **Let sit** for 30 minutes\n5) **Wash** in warm water\n6) **Air dry** to check results",
+        "recommended_products": ["prod_vanish", "prod_oxy_clean"],
+        "tips_md": "Never treat mud while wet - it will spread the stain. Let it dry completely first.",
+        "rating_up": 78,
+        "rating_down": 5
+      }
+    ],
+    "related_products": ["prod_vanish", "prod_oxy_clean"],
+    "related_fabrics": ["fabric_cotton", "fabric_denim", "fabric_polyester"]
+  }
+]

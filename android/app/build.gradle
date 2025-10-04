@@ -6,8 +6,12 @@ plugins {
 
 android {
     namespace "com.washedclean.app"
-    compileSdk 34
-    ndkVersion "25.1.8937393"
+    compileSdk 36
+    ndkVersion "26.1.10909125"
+    
+    lintOptions {
+        disable 'MissingTranslation'
+    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -25,7 +29,7 @@ android {
     defaultConfig {
         applicationId "com.washedclean.app"
         minSdkVersion flutter.minSdkVersion
-        targetSdkVersion 34
+        targetSdkVersion 36
         versionCode 1
         versionName "1.0"
     }
