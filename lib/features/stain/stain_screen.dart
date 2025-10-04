@@ -7,6 +7,7 @@ import '../../core/theme/app_theme.dart';
 import '../../core/services/content_service.dart';
 import '../../core/services/favorites_service.dart';
 import '../../core/services/ratings_service.dart';
+import '../../core/data/models/stain.dart';
 import '../../widgets/atoms/urgency_chip.dart';
 import '../../widgets/atoms/rating_bar.dart';
 
@@ -29,7 +30,6 @@ class StainScreen extends HookConsumerWidget {
     final stain = contentService.getStainById(stainId);
     final selectedFabricId = useState(fabricId);
     final isFavorite = ref.watch(favoritesServiceProvider).contains(stainId);
-    final rating = ref.watch(ratingsServiceProvider)[stainId];
 
     if (stain == null) {
       return Scaffold(
@@ -167,36 +167,45 @@ class StainScreen extends HookConsumerWidget {
               const SizedBox(height: 16),
               
               // Tips
-              final tips = _getTipsForFabric(stain, selectedFabricId.value ?? stain.byFabric.first.fabricId);
-              if (tips != null) ...[
-                Text(
-                  'Pro Tips',
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                
-                const SizedBox(height: 8),
-                
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: AppTheme.lightTeal.withOpacity(0.3),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text(
-                    tips,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      height: 1.6,
-                      fontStyle: FontStyle.italic,
-                    ),
-                  ),
-                ),
-                
-                const SizedBox(height: 24),
-              ],
-            ],
+              Builder(
+                builder: (context) {
+                  final tips = _getTipsForFabric(stain, selectedFabricId.value ?? stain.byFabric.first.fabricId);
+                  if (tips != null) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Pro Tips',
+                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        
+                        const SizedBox(height: 8),
+                        
+                        Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: AppTheme.lightTeal.withOpacity(0.3),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Text(
+                            tips,
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              height: 1.6,
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                        ),
+                        
+                        const SizedBox(height: 24),
+                      ],
+                    );
+                  }
+                  return const SizedBox.shrink();
+                },
+              ),
             
             // Rating section
             _buildRatingSection(context, stainId, ratingsService),

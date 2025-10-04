@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../core/theme/app_theme.dart';
 import '../../core/services/content_service.dart';
 import '../../widgets/molecules/search_bar.dart';
 import '../../widgets/molecules/article_card.dart';
-import '../../widgets/atoms/urgency_chip.dart';
 
 class HomeScreen extends HookConsumerWidget {
   const HomeScreen({super.key});

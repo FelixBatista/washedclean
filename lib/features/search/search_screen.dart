@@ -6,7 +6,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/services/search_service.dart';
 import '../../widgets/molecules/search_bar.dart';
-import '../../widgets/atoms/urgency_chip.dart';
 
 class SearchScreen extends HookConsumerWidget {
   final String query;

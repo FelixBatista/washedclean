@@ -259,7 +259,7 @@ class CameraScreen extends HookConsumerWidget {
 
   Future<void> _capturePhoto(BuildContext context, CameraController controller) async {
     try {
-      final image = await controller.takePicture();
+      await controller.takePicture();
       
       // For now, simulate symbol detection
       // In a real app, you would process the image here

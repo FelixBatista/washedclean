@@ -1,10 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:collection/collection.dart';
 
-import '../data/models/article.dart';
-import '../data/models/stain.dart';
-import '../data/models/fabric.dart';
-import '../data/models/product.dart';
 import 'content_service.dart';
 
 final searchServiceProvider = Provider<SearchService>((ref) {

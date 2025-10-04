@@ -23,11 +23,9 @@ class AppTheme {
         primary: primaryTeal,
         secondary: lightTeal,
         surface: white,
-        background: white,
         onPrimary: white,
         onSecondary: darkGray,
         onSurface: darkGray,
-        onBackground: darkGray,
       ),
       textTheme: const TextTheme(
         displayLarge: TextStyle(
@@ -194,7 +192,7 @@ class AppTheme {
       cardTheme: CardThemeData(
         color: white,
         elevation: 2,
-        shadowColor: darkGray.withOpacity(0.1),
+        shadowColor: darkGray.withValues(alpha: 0.1),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
@@ -232,11 +230,9 @@ class AppTheme {
         primary: primaryTeal,
         secondary: lightTeal,
         surface: darkGray,
-        background: darkGray,
         onPrimary: white,
         onSecondary: darkGray,
         onSurface: white,
-        onBackground: white,
       ),
       // Similar text theme but with white text for dark mode
       textTheme: lightTheme.textTheme.apply(
