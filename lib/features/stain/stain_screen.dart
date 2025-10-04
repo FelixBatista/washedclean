@@ -206,6 +206,7 @@ class StainScreen extends HookConsumerWidget {
                   return const SizedBox.shrink();
                 },
               ),
+            ],
             
             // Rating section
             _buildRatingSection(context, stainId, ratingsService),
