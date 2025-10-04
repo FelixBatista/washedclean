@@ -4,14 +4,14 @@ import '../../core/theme/app_theme.dart';
 import '../../core/data/models/article.dart';
 
 class ArticleCard extends StatelessWidget {
-  final Article article;
-  final VoidCallback? onTap;
-
   const ArticleCard({
     super.key,
     required this.article,
     this.onTap,
   });
+
+  final Article article;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {

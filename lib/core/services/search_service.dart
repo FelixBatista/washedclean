@@ -8,13 +8,6 @@ final searchServiceProvider = Provider<SearchService>((ref) {
 });
 
 class SearchResult {
-  final String type;
-  final String id;
-  final String title;
-  final String subtitle;
-  final String image;
-  final double score;
-
   SearchResult({
     required this.type,
     required this.id,
@@ -23,6 +16,13 @@ class SearchResult {
     required this.image,
     required this.score,
   });
+
+  final String type;
+  final String id;
+  final String title;
+  final String subtitle;
+  final String image;
+  final double score;
 }
 
 class SearchService {

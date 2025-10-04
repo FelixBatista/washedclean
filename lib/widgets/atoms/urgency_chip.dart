@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import '../../core/theme/app_theme.dart';
 
 class UrgencyChip extends StatelessWidget {
-  final String urgency;
-  final String? customText;
-
   const UrgencyChip({
     super.key,
     required this.urgency,
     this.customText,
   });
+
+  final String urgency;
+  final String? customText;
 
   @override
   Widget build(BuildContext context) {

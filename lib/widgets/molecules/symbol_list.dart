@@ -4,12 +4,12 @@ import '../../core/theme/app_theme.dart';
 import '../../core/data/models/care_symbol.dart';
 
 class SymbolList extends StatelessWidget {
-  final List<CareSymbol> symbols;
-
   const SymbolList({
     super.key,
     required this.symbols,
   });
+
+  final List<CareSymbol> symbols;
 
   @override
   Widget build(BuildContext context) {

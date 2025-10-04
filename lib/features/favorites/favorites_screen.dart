@@ -340,13 +340,6 @@ class FavoritesScreen extends HookConsumerWidget {
 }
 
 class FavoriteItem {
-  final String id;
-  final String title;
-  final String subtitle;
-  final String type;
-  final IconData icon;
-  final Color color;
-
   FavoriteItem({
     required this.id,
     required this.title,
@@ -355,4 +348,11 @@ class FavoriteItem {
     required this.icon,
     required this.color,
   });
+
+  final String id;
+  final String title;
+  final String subtitle;
+  final String type;
+  final IconData icon;
+  final Color color;
 }

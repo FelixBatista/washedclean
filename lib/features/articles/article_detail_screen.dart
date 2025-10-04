@@ -8,12 +8,12 @@ import '../../core/services/content_service.dart';
 import '../../core/services/favorites_service.dart';
 
 class ArticleDetailScreen extends ConsumerWidget {
-  final String articleId;
-
   const ArticleDetailScreen({
     super.key,
     required this.articleId,
   });
+
+  final String articleId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

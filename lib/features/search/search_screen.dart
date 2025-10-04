@@ -8,12 +8,12 @@ import '../../core/services/search_service.dart';
 import '../../widgets/molecules/search_bar.dart';
 
 class SearchScreen extends HookConsumerWidget {
-  final String query;
-  
   const SearchScreen({
     super.key,
     required this.query,
   });
+  
+  final String query;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

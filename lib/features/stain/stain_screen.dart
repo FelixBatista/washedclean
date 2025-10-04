@@ -12,14 +12,14 @@ import '../../widgets/atoms/urgency_chip.dart';
 import '../../widgets/atoms/rating_bar.dart';
 
 class StainScreen extends HookConsumerWidget {
-  final String stainId;
-  final String? fabricId;
-
   const StainScreen({
     super.key,
     required this.stainId,
     this.fabricId,
   });
+
+  final String stainId;
+  final String? fabricId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -250,6 +250,7 @@ class StainScreen extends HookConsumerWidget {
                 );
               }),
             ],
+          ],
         ),
       ),
     );

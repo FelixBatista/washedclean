@@ -4,12 +4,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import '../../core/theme/app_theme.dart';
 
 class AppSearchBar extends HookWidget {
-  final String? hintText;
-  final TextEditingController? controller;
-  final ValueChanged<String>? onSearch;
-  final ValueChanged<String>? onChanged;
-  final bool enabled;
-
   const AppSearchBar({
     super.key,
     this.hintText,
@@ -18,6 +12,12 @@ class AppSearchBar extends HookWidget {
     this.onChanged,
     this.enabled = true,
   });
+
+  final String? hintText;
+  final TextEditingController? controller;
+  final ValueChanged<String>? onSearch;
+  final ValueChanged<String>? onChanged;
+  final bool enabled;
 
   @override
   Widget build(BuildContext context) {

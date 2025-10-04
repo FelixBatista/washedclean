@@ -8,12 +8,12 @@ import '../../core/data/models/care_symbol.dart';
 import '../../widgets/molecules/symbol_list.dart';
 
 class CameraResultsScreen extends ConsumerWidget {
-  final List<String> symbols;
-
   const CameraResultsScreen({
     super.key,
     required this.symbols,
   });
+
+  final List<String> symbols;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

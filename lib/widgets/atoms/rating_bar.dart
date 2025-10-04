@@ -5,14 +5,14 @@ import '../../core/theme/app_theme.dart';
 import '../../core/services/ratings_service.dart';
 
 class RatingBar extends HookWidget {
-  final Function(RatingType)? onRatingChanged;
-  final RatingType? initialRating;
-
   const RatingBar({
     super.key,
     this.onRatingChanged,
     this.initialRating,
   });
+
+  final Function(RatingType)? onRatingChanged;
+  final RatingType? initialRating;
 
   @override
   Widget build(BuildContext context) {

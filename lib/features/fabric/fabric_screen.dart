@@ -8,12 +8,12 @@ import '../../core/services/content_service.dart';
 import '../../core/services/favorites_service.dart';
 
 class FabricScreen extends ConsumerWidget {
-  final String fabricId;
-
   const FabricScreen({
     super.key,
     required this.fabricId,
   });
+
+  final String fabricId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -169,7 +169,7 @@ class FabricScreen extends ConsumerWidget {
                             ),
                           ),
                         );
-                      }),
+                      }).toList(),
                     ),
                     
                     const SizedBox(height: 24),
@@ -211,7 +211,7 @@ class FabricScreen extends ConsumerWidget {
                           onTap: () => context.go('/product/${product.id}'),
                         ),
                       );
-                    }).toList(),
+                    }),
                   ],
                 ],
               ),
