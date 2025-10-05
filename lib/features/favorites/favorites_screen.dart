@@ -72,6 +72,16 @@ class FavoritesScreen extends HookConsumerWidget {
         title: const Text('Favorites'),
         backgroundColor: AppTheme.white,
         foregroundColor: AppTheme.darkGray,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            if (context.canPop()) {
+              context.pop();
+            } else {
+              context.go('/');
+            }
+          },
+        ),
         actions: [
           if (favoriteItems.isNotEmpty)
             IconButton(

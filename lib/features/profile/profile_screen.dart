@@ -21,6 +21,16 @@ class ProfileScreen extends HookConsumerWidget {
         backgroundColor: AppTheme.white,
         foregroundColor: AppTheme.darkGray,
         elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            if (context.canPop()) {
+              context.pop();
+            } else {
+              context.go('/');
+            }
+          },
+        ),
       ),
       backgroundColor: AppTheme.lightGray,
       body: user == null

@@ -35,6 +35,16 @@ class FabricScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(fabric.name),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            if (context.canPop()) {
+              context.pop();
+            } else {
+              context.go('/');
+            }
+          },
+        ),
         actions: [
           IconButton(
             icon: Icon(

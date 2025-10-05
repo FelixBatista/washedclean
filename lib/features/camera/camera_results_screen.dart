@@ -27,6 +27,16 @@ class CameraResultsScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Detected Symbols'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            if (context.canPop()) {
+              context.pop();
+            } else {
+              context.go('/');
+            }
+          },
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
