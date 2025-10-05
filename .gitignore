@@ -7,6 +7,7 @@ build/
 flutter_*.png
 coverage/
 generated_plugin_registrant.dart
+.flutter-plugins-dependencies
 
 # Symbolic links created by pub
 symlinks/
@@ -36,12 +37,12 @@ symlinks/
 **/gradle/
 local.properties
 *.log
+android/.gradle/
 
 # iOS
 Pods/
 Podfile.lock
 .flutter-plugins
-.flutter-plugins-dependencies
 .xcarchive
 
 # Windows

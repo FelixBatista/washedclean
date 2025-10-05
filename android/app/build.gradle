@@ -5,9 +5,8 @@ plugins {
 }
 
 android {
-    namespace "com.washedclean.app"
+    namespace "com.washedclean.app"    // REQUIRED on AGP 8+
     compileSdk 36
-    ndkVersion "26.1.10909125"
     
     lintOptions {
         disable 'MissingTranslation'
@@ -28,6 +27,7 @@ android {
 
     defaultConfig {
         applicationId "com.washedclean.app"
+        ndkVersion "26.1.10909125"
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion 36
         versionCode 1
