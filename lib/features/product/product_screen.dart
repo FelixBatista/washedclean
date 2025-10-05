@@ -38,9 +38,9 @@ class ProductScreen extends ConsumerWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            if (context.canPop()) {
+            try {
               context.pop();
-            } else {
+            } catch (e) {
               context.go('/');
             }
           },
