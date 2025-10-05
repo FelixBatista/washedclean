@@ -11,7 +11,7 @@ class HomeScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final searchController = useTextEditingController();
-    final selectedCategory = useState<String>('WINE');
+    final selectedCategory = useState<String?>(null);
 
     return Scaffold(
       backgroundColor: AppTheme.white,
@@ -155,7 +155,7 @@ class HomeScreen extends HookConsumerWidget {
     );
   }
 
-  Widget _buildCategoryFilters(BuildContext context, ValueNotifier<String> selectedCategory) {
+  Widget _buildCategoryFilters(BuildContext context, ValueNotifier<String?> selectedCategory) {
     final categories = ['Grease', 'WINE', 'Beer', 'Ink', 'Ketchup', 'Coffee', 'Blood', 'Oil'];
     
     return SizedBox(
