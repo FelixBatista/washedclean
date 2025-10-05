@@ -32,13 +32,13 @@ class AppSearchBar extends HookWidget {
         hintText: hintText ?? 'Search stains, fabrics, or products...',
         prefixIcon: const Icon(
           Icons.search,
-          color: AppTheme.mediumGray,
+          color: AppTheme.textMuted,
         ),
         suffixIcon: textController.text.isNotEmpty
             ? IconButton(
                 icon: const Icon(
                   Icons.clear,
-                  color: AppTheme.mediumGray,
+                  color: AppTheme.textMuted,
                 ),
                 onPressed: () {
                   textController.clear();
@@ -47,7 +47,7 @@ class AppSearchBar extends HookWidget {
               )
             : null,
         filled: true,
-        fillColor: AppTheme.lightGray,
+        fillColor: AppTheme.searchBackground,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,

@@ -95,8 +95,13 @@ class HomeScreen extends HookConsumerWidget {
                         },
                       )
                     else
-                      const Center(
-                        child: Text('No featured articles available'),
+                      Center(
+                        child: Text(
+                          'No featured articles available',
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: AppTheme.textSecondary,
+                          ),
+                        ),
                       ),
                   ],
                 ),
@@ -286,7 +291,7 @@ class HomeScreen extends HookConsumerWidget {
             Text(
               subtitle,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: AppTheme.mediumGray,
+                color: AppTheme.textSecondary,
               ),
               textAlign: TextAlign.center,
             ),

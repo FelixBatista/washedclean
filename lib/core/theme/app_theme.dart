@@ -9,6 +9,11 @@ class AppTheme {
   static const Color mediumGray = Color(0xFF666666);
   static const Color lightTeal = Color(0xFFE0F2F1);
   
+  // Improved contrast colors
+  static const Color textSecondary = Color(0xFF555555); // Darker than mediumGray for better contrast
+  static const Color textMuted = Color(0xFF777777); // Better contrast than mediumGray
+  static const Color searchBackground = Color(0xFFF8F9FA); // Slightly darker than lightGray
+  
   // Urgency Colors
   static const Color urgencyRed = Color(0xFFE53E3E);
   static const Color urgencyYellow = Color(0xFFD69E2E);
@@ -28,19 +33,21 @@ class AppTheme {
         onSurface: darkGray,
       ),
       textTheme: const TextTheme(
+        // H1 Style: Cocogoose, 70/80
         displayLarge: TextStyle(
+          fontFamily: 'Cocogoose',
+          fontSize: 70,
+          fontWeight: FontWeight.bold,
+          color: darkGray,
+          height: 80/70, // 80 line height / 70 font size
+        ),
+        // H2 Style: Cocogoose, 36/50
+        displayMedium: TextStyle(
           fontFamily: 'Cocogoose',
           fontSize: 36,
           fontWeight: FontWeight.bold,
           color: darkGray,
-          height: 1.2,
-        ),
-        displayMedium: TextStyle(
-          fontFamily: 'Cocogoose',
-          fontSize: 32,
-          fontWeight: FontWeight.bold,
-          color: darkGray,
-          height: 1.2,
+          height: 50/36, // 50 line height / 36 font size
         ),
         displaySmall: TextStyle(
           fontFamily: 'Cocogoose',
@@ -71,46 +78,48 @@ class AppTheme {
           height: 1.3,
         ),
         titleLarge: TextStyle(
-          fontFamily: 'AvenirCondensed',
+          fontFamily: 'Avenir',
           fontSize: 18,
           fontWeight: FontWeight.w600,
           color: darkGray,
           height: 1.4,
         ),
         titleMedium: TextStyle(
-          fontFamily: 'AvenirCondensed',
+          fontFamily: 'Avenir',
           fontSize: 16,
           fontWeight: FontWeight.w600,
           color: darkGray,
           height: 1.4,
         ),
         titleSmall: TextStyle(
-          fontFamily: 'AvenirCondensed',
+          fontFamily: 'Avenir',
           fontSize: 14,
           fontWeight: FontWeight.w600,
           color: darkGray,
           height: 1.4,
         ),
+        // Body Style: Avenir, 16/20
         bodyLarge: TextStyle(
-          fontFamily: 'AvenirCondensed',
+          fontFamily: 'Avenir',
           fontSize: 16,
           fontWeight: FontWeight.normal,
           color: darkGray,
-          height: 1.6,
+          height: 20/16, // 20 line height / 16 font size
         ),
         bodyMedium: TextStyle(
-          fontFamily: 'AvenirCondensed',
+          fontFamily: 'Avenir',
           fontSize: 14,
           fontWeight: FontWeight.normal,
           color: darkGray,
           height: 1.6,
         ),
+        // Button/Exclusions Style: Avenir, 12/20
         bodySmall: TextStyle(
-          fontFamily: 'AvenirCondensed',
+          fontFamily: 'Avenir',
           fontSize: 12,
           fontWeight: FontWeight.normal,
-          color: mediumGray,
-          height: 1.5,
+          color: textSecondary,
+          height: 20/12, // 20 line height / 12 font size
         ),
       ),
       appBarTheme: const AppBarTheme(
@@ -135,7 +144,7 @@ class AppTheme {
             borderRadius: BorderRadius.circular(12),
           ),
           textStyle: const TextStyle(
-            fontFamily: 'AvenirCondensed',
+            fontFamily: 'Avenir',
             fontSize: 16,
             fontWeight: FontWeight.w600,
           ),
@@ -150,7 +159,7 @@ class AppTheme {
             borderRadius: BorderRadius.circular(12),
           ),
           textStyle: const TextStyle(
-            fontFamily: 'AvenirCondensed',
+            fontFamily: 'Avenir',
             fontSize: 16,
             fontWeight: FontWeight.w600,
           ),
@@ -161,7 +170,7 @@ class AppTheme {
           foregroundColor: primaryTeal,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           textStyle: const TextStyle(
-            fontFamily: 'AvenirCondensed',
+            fontFamily: 'Avenir',
             fontSize: 16,
             fontWeight: FontWeight.w600,
           ),
@@ -169,7 +178,7 @@ class AppTheme {
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: lightGray,
+        fillColor: searchBackground,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,
@@ -184,9 +193,9 @@ class AppTheme {
         ),
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         hintStyle: const TextStyle(
-          fontFamily: 'AvenirCondensed',
+          fontFamily: 'Avenir',
           fontSize: 16,
-          color: mediumGray,
+          color: textMuted,
         ),
       ),
       cardTheme: CardThemeData(
@@ -202,7 +211,7 @@ class AppTheme {
         backgroundColor: lightTeal,
         selectedColor: primaryTeal,
         labelStyle: const TextStyle(
-          fontFamily: 'AvenirCondensed',
+          fontFamily: 'Avenir',
           fontSize: 14,
           fontWeight: FontWeight.w500,
         ),
@@ -214,7 +223,7 @@ class AppTheme {
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: white,
         selectedItemColor: primaryTeal,
-        unselectedItemColor: mediumGray,
+        unselectedItemColor: textSecondary,
         type: BottomNavigationBarType.fixed,
         elevation: 8,
       ),
