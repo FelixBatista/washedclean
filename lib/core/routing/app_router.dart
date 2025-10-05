@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../services/app_bootstrap_service.dart';
 import '../../features/splash/splash_screen.dart';
 import '../../features/intro/intro_screen.dart';
 import '../../features/home/home_screen.dart';
@@ -20,7 +21,11 @@ final routerProvider = Provider<GoRouter>((ref) {
     routes: [
       GoRoute(
         path: '/splash',
-        builder: (context, state) => const SplashScreen(),
+        builder: (context, state) {
+          // Get the app initialization future
+          final initFuture = ref.read(appBootstrapProvider.future);
+          return SplashScreen(loadFuture: initFuture);
+        },
       ),
       GoRoute(
         path: '/intro',
