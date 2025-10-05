@@ -1,68 +1,109 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../core/theme/app_theme.dart';
-import '../../widgets/molecules/search_bar.dart';
 
 class HomeScreen extends HookConsumerWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final searchController = useTextEditingController();
+    final selectedCategory = useState<String>('WINE');
 
     return Scaffold(
-      backgroundColor: AppTheme.lightGray,
+      backgroundColor: AppTheme.white,
       body: SafeArea(
         child: Column(
           children: [
-            // Header with search
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: const BoxDecoration(
-                color: AppTheme.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 4,
-                    offset: Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: Column(
-                children: [
-                  // App title
-                  Text(
-                    'Washed Clean',
-                    style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                      color: AppTheme.primaryTeal,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  
-                  // Search bar
-                  AppSearchBar(
-                    onSearch: (query) {
-                      if (query.isNotEmpty) {
-                        context.go('/search?q=$query');
-                      }
-                    },
-                  ),
-                ],
-              ),
-            ),
-            
-            // Content
+            // Main content area
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Quick actions
-                    _buildQuickActions(context),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const SizedBox(height: 40),
+                      
+                      // Teal droplet icon
+                      Container(
+                        width: 80,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          color: AppTheme.primaryTeal,
+                          borderRadius: BorderRadius.circular(40),
+                        ),
+                        child: const Icon(
+                          Icons.water_drop,
+                          color: AppTheme.white,
+                          size: 40,
+                        ),
+                      ),
+                      
+                      const SizedBox(height: 24),
+                      
+                      // Main message
+                      Text(
+                        'Don\'t worry! We have a solution to remove stains from your clothes.',
+                        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                          color: AppTheme.darkGray,
+                          fontWeight: FontWeight.bold,
+                          height: 1.3,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      
+                      const SizedBox(height: 32),
+                      
+                      // Search bar
+                      Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: AppTheme.white,
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: AppTheme.lightGray,
+                            width: 1,
+                          ),
+                        ),
+                        child: TextField(
+                          controller: searchController,
+                          decoration: InputDecoration(
+                            hintText: 'Search "How to remove wine stains."',
+                            hintStyle: const TextStyle(
+                              color: AppTheme.textSecondary,
+                              fontSize: 16,
+                            ),
+                            prefixIcon: const Icon(
+                              Icons.search,
+                              color: AppTheme.primaryTeal,
+                              size: 24,
+                            ),
+                            border: InputBorder.none,
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 16,
+                            ),
+                          ),
+                          onSubmitted: (query) {
+                            if (query.isNotEmpty) {
+                              context.go('/search?q=$query');
+                            }
+                          },
+                        ),
+                      ),
+                      
+                      const SizedBox(height: 24),
+                      
+                      // Category filter buttons
+                      _buildCategoryFilters(context, selectedCategory),
+                      
+                      const SizedBox(height: 40),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -122,163 +163,47 @@ class HomeScreen extends HookConsumerWidget {
     );
   }
 
-  Widget _buildQuickActions(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Quick Actions',
-          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        
-        const SizedBox(height: 16),
-        
-        Row(
-          children: [
-            Expanded(
-              child: _buildQuickActionCard(
-                context,
-                icon: Icons.search,
-                title: 'Search Stains',
-                subtitle: 'Find solutions',
-                color: AppTheme.urgencyRed,
-                onTap: () => context.go('/search?q=stain'),
+  Widget _buildCategoryFilters(BuildContext context, ValueNotifier<String> selectedCategory) {
+    final categories = ['Grease', 'WINE', 'Beer', 'Ink', 'Ketchup', 'Coffee', 'Blood', 'Oil'];
+    
+    return SizedBox(
+      height: 50,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: categories.length,
+        itemBuilder: (context, index) {
+          final category = categories[index];
+          final isSelected = selectedCategory.value == category;
+          
+          return Container(
+            margin: const EdgeInsets.only(right: 12),
+            child: GestureDetector(
+              onTap: () {
+                selectedCategory.value = category;
+                context.go('/search?q=$category');
+              },
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                decoration: BoxDecoration(
+                  color: isSelected ? AppTheme.primaryTeal : AppTheme.white,
+                  borderRadius: BorderRadius.circular(25),
+                  border: Border.all(
+                    color: isSelected ? AppTheme.primaryTeal : AppTheme.lightGray,
+                    width: 1,
+                  ),
+                ),
+                child: Text(
+                  category,
+                  style: TextStyle(
+                    color: isSelected ? AppTheme.white : AppTheme.darkGray,
+                    fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                    fontSize: 14,
+                  ),
+                ),
               ),
             ),
-            
-            const SizedBox(width: 16),
-            
-            Expanded(
-              child: _buildQuickActionCard(
-                context,
-                icon: Icons.checkroom,
-                title: 'Fabric Care',
-                subtitle: 'Care guides',
-                color: AppTheme.primaryTeal,
-                onTap: () => context.go('/search?q=fabric'),
-              ),
-            ),
-          ],
-        ),
-        
-        const SizedBox(height: 16),
-        
-        Row(
-          children: [
-            Expanded(
-              child: _buildQuickActionCard(
-                context,
-                icon: Icons.shopping_bag,
-                title: 'Products',
-                subtitle: 'Recommended',
-                color: AppTheme.urgencyYellow,
-                onTap: () => context.go('/search?q=product'),
-              ),
-            ),
-            
-            const SizedBox(width: 16),
-            
-            Expanded(
-              child: _buildQuickActionCard(
-                context,
-                icon: Icons.camera_alt,
-                title: 'Scan Label',
-                subtitle: 'Read symbols',
-                color: AppTheme.primaryTeal,
-                onTap: () => context.go('/camera'),
-              ),
-            ),
-          ],
-        ),
-        
-        const SizedBox(height: 16),
-        
-        Row(
-          children: [
-            Expanded(
-              child: _buildQuickActionCard(
-                context,
-                icon: Icons.info_outline,
-                title: 'Care Symbols',
-                subtitle: 'Learn symbols',
-                color: AppTheme.urgencyGreen,
-                onTap: () => context.go('/symbols'),
-              ),
-            ),
-            
-            const SizedBox(width: 16),
-            
-            Expanded(
-              child: Container(), // Empty space for symmetry
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-
-  Widget _buildQuickActionCard(
-    BuildContext context, {
-    required IconData icon,
-    required String title,
-    required String subtitle,
-    required Color color,
-    required VoidCallback onTap,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: AppTheme.white,
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.05),
-              blurRadius: 8,
-              offset: const Offset(0, 2),
-            ),
-          ],
-        ),
-        child: Column(
-          children: [
-            Container(
-              width: 48,
-              height: 48,
-              decoration: BoxDecoration(
-                color: color.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(24),
-              ),
-              child: Icon(
-                icon,
-                color: color,
-                size: 24,
-              ),
-            ),
-            
-            const SizedBox(height: 12),
-            
-            Text(
-              title,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            
-            const SizedBox(height: 4),
-            
-            Text(
-              subtitle,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: AppTheme.textSecondary,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
