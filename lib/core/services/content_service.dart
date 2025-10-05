@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../data/models/article.dart';
 import '../data/models/stain.dart';
 import '../data/models/fabric.dart';
 import '../data/models/product.dart';
@@ -13,7 +12,6 @@ final contentServiceProvider = Provider<ContentService>((ref) {
 });
 
 class ContentService {
-  List<Article> _articles = [];
   List<Stain> _stains = [];
   List<Fabric> _fabrics = [];
   List<Product> _products = [];
@@ -25,11 +23,6 @@ class ContentService {
     if (_isInitialized) return;
 
     try {
-      // Load articles
-      final articlesJson = await rootBundle.loadString('assets/seed/articles.json');
-      final articlesList = json.decode(articlesJson) as List;
-      _articles = articlesList.map((json) => Article.fromJson(json)).toList();
-
       // Load stains
       final stainsJson = await rootBundle.loadString('assets/seed/stains.json');
       final stainsList = json.decode(stainsJson) as List;
@@ -57,21 +50,10 @@ class ContentService {
     }
   }
 
-  List<Article> get articles => _articles;
   List<Stain> get stains => _stains;
   List<Fabric> get fabrics => _fabrics;
   List<Product> get products => _products;
   List<CareSymbol> get careSymbols => _careSymbols;
-
-  List<Article> get featuredArticles => _articles.where((a) => a.featured).toList();
-
-  Article? getArticleById(String id) {
-    try {
-      return _articles.firstWhere((a) => a.id == id);
-    } catch (e) {
-      return null;
-    }
-  }
 
   Stain? getStainById(String id) {
     try {

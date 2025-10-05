@@ -3,17 +3,13 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../core/theme/app_theme.dart';
-import '../../core/services/content_service.dart';
 import '../../widgets/molecules/search_bar.dart';
-import '../../widgets/molecules/article_card.dart';
 
 class HomeScreen extends HookConsumerWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final contentService = ref.watch(contentServiceProvider);
-    final featuredArticles = contentService.featuredArticles;
 
     return Scaffold(
       backgroundColor: AppTheme.lightGray,
@@ -66,43 +62,6 @@ class HomeScreen extends HookConsumerWidget {
                   children: [
                     // Quick actions
                     _buildQuickActions(context),
-                    
-                    const SizedBox(height: 24),
-                    
-                    // Featured articles
-                    Text(
-                      'Featured Articles',
-                      style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    
-                    const SizedBox(height: 16),
-                    
-                    // Articles list
-                    if (featuredArticles.isNotEmpty)
-                      ListView.separated(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: featuredArticles.length,
-                        separatorBuilder: (context, index) => const SizedBox(height: 16),
-                        itemBuilder: (context, index) {
-                          final article = featuredArticles[index];
-                          return ArticleCard(
-                            article: article,
-                            onTap: () => context.go('/article/${article.id}'),
-                          );
-                        },
-                      )
-                    else
-                      Center(
-                        child: Text(
-                          'No featured articles available',
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: AppTheme.textSecondary,
-                          ),
-                        ),
-                      ),
                   ],
                 ),
               ),
@@ -131,13 +90,13 @@ class HomeScreen extends HookConsumerWidget {
               // Already on home
               break;
             case 1:
-              context.go('/articles');
-              break;
-            case 2:
               context.go('/favorites');
               break;
-            case 3:
+            case 2:
               context.go('/camera');
+              break;
+            case 3:
+              context.go('/profile');
               break;
           }
         },
@@ -147,16 +106,16 @@ class HomeScreen extends HookConsumerWidget {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.article),
-            label: 'Articles',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
             label: 'Favorites',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.camera_alt),
             label: 'Camera',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
           ),
         ],
       ),

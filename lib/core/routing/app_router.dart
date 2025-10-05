@@ -8,12 +8,11 @@ import '../../features/home/home_screen.dart';
 import '../../features/search/search_screen.dart';
 import '../../features/camera/camera_screen.dart';
 import '../../features/camera/camera_results_screen.dart';
-import '../../features/articles/articles_list_screen.dart';
-import '../../features/articles/article_detail_screen.dart';
 import '../../features/stain/stain_screen.dart';
 import '../../features/fabric/fabric_screen.dart';
 import '../../features/product/product_screen.dart';
 import '../../features/favorites/favorites_screen.dart';
+import '../../features/profile/profile_screen.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
@@ -54,17 +53,6 @@ final routerProvider = Provider<GoRouter>((ref) {
         },
       ),
       GoRoute(
-        path: '/articles',
-        builder: (context, state) => const ArticlesListScreen(),
-      ),
-      GoRoute(
-        path: '/article/:id',
-        builder: (context, state) {
-          final id = state.pathParameters['id']!;
-          return ArticleDetailScreen(articleId: id);
-        },
-      ),
-      GoRoute(
         path: '/stain/:id',
         builder: (context, state) {
           final id = state.pathParameters['id']!;
@@ -89,6 +77,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/favorites',
         builder: (context, state) => const FavoritesScreen(),
+      ),
+      GoRoute(
+        path: '/profile',
+        builder: (context, state) => const ProfileScreen(),
       ),
     ],
   );

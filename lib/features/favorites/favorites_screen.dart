@@ -22,19 +22,6 @@ class FavoritesScreen extends HookConsumerWidget {
     
     for (final itemId in favorites) {
       // Try to find the item in different content types
-      final article = contentService.getArticleById(itemId);
-      if (article != null) {
-        favoriteItems.add(FavoriteItem(
-          id: article.id,
-          title: article.title,
-          subtitle: article.subtitle,
-          type: 'article',
-          icon: Icons.article,
-          color: AppTheme.primaryTeal,
-        ));
-        continue;
-      }
-
       final stain = contentService.getStainById(itemId);
       if (stain != null) {
         favoriteItems.add(FavoriteItem(
@@ -320,9 +307,6 @@ class FavoritesScreen extends HookConsumerWidget {
         ),
         onTap: () {
           switch (item.type) {
-            case 'article':
-              context.go('/article/${item.id}');
-              break;
             case 'stain':
               context.go('/stain/${item.id}');
               break;

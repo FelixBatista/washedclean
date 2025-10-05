@@ -81,20 +81,6 @@ class SearchService {
       }
     }
 
-    // Search articles
-    for (final article in _contentService.articles) {
-      final score = _calculateScore(normalizedQuery, '${article.title} ${article.subtitle}', 1.0);
-      if (score > 0) {
-        results.add(SearchResult(
-          type: 'article',
-          id: article.id,
-          title: article.title,
-          subtitle: article.subtitle,
-          image: article.image,
-          score: score,
-        ));
-      }
-    }
 
     // Sort by score descending
     results.sort((a, b) => b.score.compareTo(a.score));

@@ -1,22 +1,31 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'auth_service.dart';
 
 final favoritesServiceProvider = StateNotifierProvider<FavoritesService, Set<String>>((ref) {
-  return FavoritesService();
+  return FavoritesService(ref);
 });
 
 class FavoritesService extends StateNotifier<Set<String>> {
-  FavoritesService() : super({}) {
+  FavoritesService(this._ref) : super({}) {
     _loadFavorites();
   }
 
+  final Ref _ref;
   static const String _key = 'favorites';
 
   Future<void> _loadFavorites() async {
     try {
+      final user = _ref.read(authServiceProvider);
+      if (user == null) {
+        state = {};
+        return;
+      }
+      
       final prefs = await SharedPreferences.getInstance();
-      final favoritesJson = prefs.getString(_key);
+      final userKey = '${_key}_${user.id}';
+      final favoritesJson = prefs.getString(userKey);
       if (favoritesJson != null) {
         final List<dynamic> favoritesList = json.decode(favoritesJson);
         state = favoritesList.cast<String>().toSet();
@@ -28,9 +37,13 @@ class FavoritesService extends StateNotifier<Set<String>> {
 
   Future<void> _saveFavorites() async {
     try {
+      final user = _ref.read(authServiceProvider);
+      if (user == null) return;
+      
       final prefs = await SharedPreferences.getInstance();
+      final userKey = '${_key}_${user.id}';
       final favoritesJson = json.encode(state.toList());
-      await prefs.setString(_key, favoritesJson);
+      await prefs.setString(userKey, favoritesJson);
     } catch (e) {
       print('Error saving favorites: $e');
     }
