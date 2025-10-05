@@ -35,7 +35,13 @@ class SearchScreen extends HookConsumerWidget {
         title: const Text('Search'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () => context.pop(),
+          onPressed: () {
+            try {
+              context.pop();
+            } catch (e) {
+              context.go('/');
+            }
+          },
         ),
       ),
       body: Column(
