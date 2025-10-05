@@ -192,6 +192,29 @@ class HomeScreen extends HookConsumerWidget {
             ),
           ],
         ),
+        
+        const SizedBox(height: 16),
+        
+        Row(
+          children: [
+            Expanded(
+              child: _buildQuickActionCard(
+                context,
+                icon: Icons.info_outline,
+                title: 'Care Symbols',
+                subtitle: 'Learn symbols',
+                color: AppTheme.urgencyGreen,
+                onTap: () => context.go('/symbols'),
+              ),
+            ),
+            
+            const SizedBox(width: 16),
+            
+            Expanded(
+              child: Container(), // Empty space for symmetry
+            ),
+          ],
+        ),
       ],
     );
   }

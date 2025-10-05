@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Creator: fig2dev Version 3.2 Patchlevel 4 -->
+<!-- CreationDate: Sun Jan 27 16:37:32 2008 -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="100"
+   height="100"
+   viewBox="0 0 20157 13858"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.45.1+0.46pre1"
+   sodipodi:docname="Chem_F_kilo2.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   version="1.0">
+  <metadata
+     id="metadata277">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs275" />
+  <sodipodi:namedview
+     inkscape:window-height="974"
+     inkscape:window-width="1680"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     guidetolerance="10.0"
+     gridtolerance="10.0"
+     objecttolerance="10.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base"
+     showgrid="false"
+     inkscape:zoom="2.8955788"
+     inkscape:cx="-84.270651"
+     inkscape:cy="83.212069"
+     inkscape:window-x="0"
+     inkscape:window-y="50"
+     inkscape:current-layer="svg2">
+    <inkscape:grid
+       type="xygrid"
+       id="grid2657"
+       visible="true"
+       enabled="true" />
+  </sodipodi:namedview>
+  <g
+     style="fill:none;stroke:#000000;stroke-width:0.025in"
+     id="g4"
+     transform="matrix(7.1835353,0,0,7.1835353,-23832.097,-13458.592)">
+    <defs
+       id="defs6" />
+<!-- Circle -->    <circle
+       cx="4724"
+       cy="2834"
+       r="1379"
+       style="stroke:#000000;stroke-width:48"
+       id="circle270"
+       sodipodi:cx="4724"
+       sodipodi:cy="2834"
+       sodipodi:rx="1379"
+       sodipodi:ry="1379" />
+<!-- Text -->    <text
+       x="4440"
+       y="3259"
+       font-style="normal"
+       font-weight="normal"
+       font-size="1210"
+       id="text272"
+       style="font-size:1210px;font-style:normal;font-weight:normal;text-anchor:start;fill:#000000;font-family:Times">F</text>
+  </g>
+</svg>

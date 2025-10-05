@@ -6,6 +6,7 @@ import 'core/services/search_service.dart';
 import 'core/services/favorites_service.dart';
 import 'core/services/ratings_service.dart';
 import 'core/services/auth_service.dart';
+import 'core/services/symbol_service.dart';
 
 class WashedCleanApp extends ConsumerStatefulWidget {
   const WashedCleanApp({super.key});
@@ -28,6 +29,7 @@ class _WashedCleanAppState extends ConsumerState<WashedCleanApp> {
     ref.read(favoritesServiceProvider);
     ref.read(ratingsServiceProvider);
     ref.read(authServiceProvider);
+    ref.read(symbolServiceProvider);
   }
 
   @override

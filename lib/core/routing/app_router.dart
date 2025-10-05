@@ -13,6 +13,7 @@ import '../../features/fabric/fabric_screen.dart';
 import '../../features/product/product_screen.dart';
 import '../../features/favorites/favorites_screen.dart';
 import '../../features/profile/profile_screen.dart';
+import '../../features/symbols/symbols_screen.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
@@ -81,6 +82,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/profile',
         builder: (context, state) => const ProfileScreen(),
+      ),
+      GoRoute(
+        path: '/symbols',
+        builder: (context, state) => const SymbolsScreen(),
       ),
     ],
   );
