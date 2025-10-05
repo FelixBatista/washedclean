@@ -28,19 +28,11 @@ class HomeScreen extends HookConsumerWidget {
                     children: [
                       const SizedBox(height: 40),
                       
-                      // Teal droplet icon
-                      Container(
+                      // Logo
+                      Image.asset(
+                        'assets/images/icon-02.png',
                         width: 80,
                         height: 80,
-                        decoration: BoxDecoration(
-                          color: AppTheme.primaryTeal,
-                          borderRadius: BorderRadius.circular(40),
-                        ),
-                        child: const Icon(
-                          Icons.water_drop,
-                          color: AppTheme.white,
-                          size: 40,
-                        ),
                       ),
                       
                       const SizedBox(height: 24),
