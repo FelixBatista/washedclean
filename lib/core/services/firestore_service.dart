@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../data/models/stain.dart';
 import '../data/models/fabric.dart';
 import '../data/models/product.dart';
+import '../data/models/stain_solution.dart';
 import 'symbol_service.dart';
 
 final firestoreServiceProvider = Provider<FirestoreService>((ref) {
@@ -227,6 +228,78 @@ class FirestoreService {
   Stream<List<CareSymbol>> watchCareSymbols() {
     return _firestore.collection('care_symbols').snapshots().map(
       (snapshot) => snapshot.docs.map((doc) => CareSymbol.fromFirestore(doc)).toList(),
+    );
+  }
+
+  // Stain Solutions Collection
+  Future<List<StainSolution>> getStainSolutions() async {
+    try {
+      final snapshot = await _firestore.collection('stain_solutions').get();
+      return snapshot.docs.map((doc) => StainSolution.fromFirestore(doc)).toList();
+    } catch (e) {
+      print('Error getting stain solutions: $e');
+      return [];
+    }
+  }
+
+  Future<StainSolution?> getStainSolutionById(String id) async {
+    try {
+      final doc = await _firestore.collection('stain_solutions').doc(id).get();
+      if (doc.exists) {
+        return StainSolution.fromFirestore(doc);
+      }
+      return null;
+    } catch (e) {
+      print('Error getting stain solution by id: $e');
+      return null;
+    }
+  }
+
+  Future<StainSolution?> getStainSolutionByTitle(String title) async {
+    try {
+      final snapshot = await _firestore
+          .collection('stain_solutions')
+          .where('title', isEqualTo: title)
+          .limit(1)
+          .get();
+      
+      if (snapshot.docs.isNotEmpty) {
+        return StainSolution.fromFirestore(snapshot.docs.first);
+      }
+      return null;
+    } catch (e) {
+      print('Error getting stain solution by title: $e');
+      return null;
+    }
+  }
+
+  Future<void> addStainSolution(StainSolution solution) async {
+    try {
+      await _firestore.collection('stain_solutions').doc(solution.id).set(solution.toFirestore());
+    } catch (e) {
+      print('Error adding stain solution: $e');
+    }
+  }
+
+  Future<void> updateStainSolution(StainSolution solution) async {
+    try {
+      await _firestore.collection('stain_solutions').doc(solution.id).update(solution.toFirestore());
+    } catch (e) {
+      print('Error updating stain solution: $e');
+    }
+  }
+
+  Future<void> deleteStainSolution(String id) async {
+    try {
+      await _firestore.collection('stain_solutions').doc(id).delete();
+    } catch (e) {
+      print('Error deleting stain solution: $e');
+    }
+  }
+
+  Stream<List<StainSolution>> watchStainSolutions() {
+    return _firestore.collection('stain_solutions').snapshots().map(
+      (snapshot) => snapshot.docs.map((doc) => StainSolution.fromFirestore(doc)).toList(),
     );
   }
 }

@@ -7,7 +7,9 @@ import '../../core/theme/app_theme.dart';
 import '../../core/services/content_service.dart';
 import '../../core/services/favorites_service.dart';
 import '../../core/services/ratings_service.dart';
+import '../../core/services/stain_solution_service.dart';
 import '../../core/data/models/stain.dart';
+import '../../core/data/models/stain_solution.dart';
 import '../../widgets/atoms/urgency_chip.dart';
 import '../../widgets/atoms/rating_bar.dart';
 
@@ -30,6 +32,9 @@ class StainScreen extends HookConsumerWidget {
     final stain = contentService.getStainById(stainId);
     final selectedFabricId = useState(fabricId);
     final isFavorite = ref.watch(favoritesServiceProvider).contains(stainId);
+
+    // Load stain solution from Firebase
+    final stainSolutionAsync = ref.watch(stainSolutionByTitleProvider(stain?.name ?? ''));
 
     if (stain == null) {
       return Scaffold(
@@ -218,6 +223,29 @@ class StainScreen extends HookConsumerWidget {
               ),
             ],
             
+            // Detailed Solutions from Firebase
+            stainSolutionAsync.when(
+              data: (solution) {
+                if (solution != null) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildDetailedSolution(context, solution),
+                      const SizedBox(height: 24),
+                    ],
+                  );
+                }
+                return const SizedBox.shrink();
+              },
+              loading: () => const Center(
+                child: Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+              error: (error, stack) => const SizedBox.shrink(),
+            ),
+
             // Rating section
             _buildRatingSection(context, stainId, ratingsService),
             
@@ -310,6 +338,301 @@ class StainScreen extends HookConsumerWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildDetailedSolution(BuildContext context, StainSolution solution) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Detailed Removal Guide',
+          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+            fontWeight: FontWeight.bold,
+            color: AppTheme.primaryTeal,
+          ),
+        ),
+        
+        const SizedBox(height: 16),
+        
+        // General notes
+        if (solution.introNotes.isNotEmpty) ...[
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: AppTheme.lightTeal.withValues(alpha: 0.2),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.info_outline,
+                      color: AppTheme.primaryTeal,
+                      size: 20,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Important Notes',
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: AppTheme.primaryTeal,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                ...solution.introNotes.take(2).map((note) => Padding(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: Text(
+                    '• $note',
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      height: 1.5,
+                    ),
+                  ),
+                )),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
+        ],
+        
+        // Cautions
+        if (solution.cautions.isNotEmpty) ...[
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: AppTheme.urgencyRed.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: AppTheme.urgencyRed.withValues(alpha: 0.3)),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.warning_amber_rounded,
+                      color: AppTheme.urgencyRed,
+                      size: 20,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Cautions',
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: AppTheme.urgencyRed,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                ...solution.cautions.map((caution) => Padding(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: Text(
+                    '⚠️ $caution',
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      height: 1.5,
+                      color: AppTheme.darkGray,
+                    ),
+                  ),
+                )),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
+        ],
+        
+        // Sections by material type
+        ...solution.sections.map((section) => _buildSolutionSection(context, section)),
+      ],
+    );
+  }
+
+  Widget _buildSolutionSection(BuildContext context, SolutionSection section) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      decoration: BoxDecoration(
+        color: AppTheme.white,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: AppTheme.lightTeal),
+      ),
+      child: Theme(
+        data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+        child: ExpansionTile(
+          tilePadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          childrenPadding: const EdgeInsets.all(16),
+          leading: Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: AppTheme.primaryTeal.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: const Icon(
+              Icons.cleaning_services,
+              color: AppTheme.primaryTeal,
+              size: 24,
+            ),
+          ),
+          title: Text(
+            section.sectionName,
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.bold,
+              color: AppTheme.darkGray,
+            ),
+          ),
+          children: section.methods.map((method) => _buildMethod(context, method)).toList(),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMethod(BuildContext context, SolutionMethod method) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Materials needed
+        if (method.materials.isNotEmpty) ...[
+          Text(
+            'Materials Needed:',
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+              fontWeight: FontWeight.bold,
+              color: AppTheme.primaryTeal,
+            ),
+          ),
+          const SizedBox(height: 8),
+          ...method.materials.map((material) => Padding(
+            padding: const EdgeInsets.only(left: 8, bottom: 4),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('• ', style: TextStyle(fontSize: 16)),
+                Expanded(
+                  child: Text(
+                    material,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                ),
+              ],
+            ),
+          )),
+          const SizedBox(height: 12),
+        ],
+        
+        // Steps
+        if (method.steps.isNotEmpty) ...[
+          Text(
+            'Steps:',
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+              fontWeight: FontWeight.bold,
+              color: AppTheme.primaryTeal,
+            ),
+          ),
+          const SizedBox(height: 8),
+          ...method.steps.asMap().entries.map((entry) => Padding(
+            padding: const EdgeInsets.only(left: 8, bottom: 8),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: 24,
+                  height: 24,
+                  decoration: const BoxDecoration(
+                    color: AppTheme.primaryTeal,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Center(
+                    child: Text(
+                      '${entry.key + 1}',
+                      style: const TextStyle(
+                        color: AppTheme.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    entry.value,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      height: 1.5,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )),
+          const SizedBox(height: 12),
+        ],
+        
+        // Notes
+        if (method.notes.isNotEmpty) ...[
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: AppTheme.lightTeal.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Additional Information:',
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                ...method.notes.map((note) => Padding(
+                  padding: const EdgeInsets.only(bottom: 4),
+                  child: Text(
+                    note,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      height: 1.5,
+                    ),
+                  ),
+                )),
+              ],
+            ),
+          ),
+        ],
+        
+        // Method cautions
+        if (method.cautions.isNotEmpty) ...[
+          const SizedBox(height: 8),
+          ...method.cautions.map((caution) => Container(
+            padding: const EdgeInsets.all(8),
+            margin: const EdgeInsets.only(bottom: 4),
+            decoration: BoxDecoration(
+              color: AppTheme.urgencyRed.withValues(alpha: 0.05),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Icon(
+                  Icons.warning_amber_rounded,
+                  color: AppTheme.urgencyRed,
+                  size: 16,
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    caution,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: AppTheme.darkGray,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          )),
+        ],
+      ],
     );
   }
 }
