@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Fabric {
   const Fabric({
     required this.id,
@@ -41,5 +43,15 @@ class Fabric {
       'common_stains': commonStains,
       'recommended_products': recommendedProducts,
     };
+  }
+
+  // Firestore serialization
+  factory Fabric.fromFirestore(DocumentSnapshot doc) {
+    final data = doc.data() as Map<String, dynamic>;
+    return Fabric.fromJson(data);
+  }
+
+  Map<String, dynamic> toFirestore() {
+    return toJson();
   }
 }

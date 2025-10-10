@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Stain {
   const Stain({
     required this.id,
@@ -43,6 +45,16 @@ class Stain {
       'related_products': relatedProducts,
       'related_fabrics': relatedFabrics,
     };
+  }
+
+  // Firestore serialization
+  factory Stain.fromFirestore(DocumentSnapshot doc) {
+    final data = doc.data() as Map<String, dynamic>;
+    return Stain.fromJson(data);
+  }
+
+  Map<String, dynamic> toFirestore() {
+    return toJson();
   }
 }
 

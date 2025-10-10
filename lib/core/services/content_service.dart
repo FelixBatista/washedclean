@@ -5,13 +5,18 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../data/models/stain.dart';
 import '../data/models/fabric.dart';
 import '../data/models/product.dart';
-import '../data/models/care_symbol.dart';
+import 'firestore_service.dart';
+import 'symbol_service.dart';
 
 final contentServiceProvider = Provider<ContentService>((ref) {
-  return ContentService();
+  return ContentService(ref.watch(firestoreServiceProvider));
 });
 
 class ContentService {
+  final FirestoreService _firestoreService;
+  
+  ContentService(this._firestoreService);
+  
   List<Stain> _stains = [];
   List<Fabric> _fabrics = [];
   List<Product> _products = [];
@@ -22,6 +27,23 @@ class ContentService {
   Future<void> initialize() async {
     if (_isInitialized) return;
 
+    try {
+      // Load data from Firestore
+      _stains = await _firestoreService.getStains();
+      _fabrics = await _firestoreService.getFabrics();
+      _products = await _firestoreService.getProducts();
+      _careSymbols = await _firestoreService.getCareSymbols();
+      
+      _isInitialized = true;
+    } catch (e) {
+      print('Error loading data from Firestore: $e');
+      // Fallback to local data if Firestore fails
+      await _loadLocalData();
+      _isInitialized = true;
+    }
+  }
+
+  Future<void> _loadLocalData() async {
     try {
       // Load stains
       final stainsJson = await rootBundle.loadString('assets/seed/stains.json');
@@ -42,11 +64,8 @@ class ContentService {
       final symbolsJson = await rootBundle.loadString('assets/seed/care_symbols.json');
       final symbolsList = json.decode(symbolsJson) as List;
       _careSymbols = symbolsList.map((json) => CareSymbol.fromJson(json)).toList();
-
-      _isInitialized = true;
     } catch (e) {
-      // Handle error - could load from fallback or show error
-      print('Error loading content: $e');
+      print('Error loading local data: $e');
     }
   }
 

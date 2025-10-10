@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Product {
   const Product({
     required this.id,
@@ -54,5 +56,15 @@ class Product {
       'fits_fabrics': fitsFabrics,
       'affiliate_url': affiliateUrl,
     };
+  }
+
+  // Firestore serialization
+  factory Product.fromFirestore(DocumentSnapshot doc) {
+    final data = doc.data() as Map<String, dynamic>;
+    return Product.fromJson(data);
+  }
+
+  Map<String, dynamic> toFirestore() {
+    return toJson();
   }
 }

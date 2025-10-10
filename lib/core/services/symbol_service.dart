@@ -1,4 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CareSymbol {
   const CareSymbol({
@@ -46,6 +47,34 @@ class CareSymbol {
       'isoCode': isoCode,
       'temperature': temperature,
       'instructions': instructions,
+    };
+  }
+
+  // Firestore serialization
+  factory CareSymbol.fromFirestore(DocumentSnapshot doc) {
+    final data = doc.data() as Map<String, dynamic>;
+    return CareSymbol(
+      id: data['id'] as String,
+      name: data['name'] as String,
+      description: data['description'] as String,
+      isoCode: data['iso_code'] as String,
+      category: data['category'] as String,
+      temperature: data['temperature'] as int?,
+      instructions: data['instructions'] as String?,
+      fileName: data['file_name'] as String,
+    );
+  }
+
+  Map<String, dynamic> toFirestore() {
+    return {
+      'id': id,
+      'name': name,
+      'description': description,
+      'iso_code': isoCode,
+      'category': category,
+      'temperature': temperature,
+      'instructions': instructions,
+      'file_name': fileName,
     };
   }
 }
@@ -450,4 +479,5 @@ class SymbolService {
         return category;
     }
   }
+
 }

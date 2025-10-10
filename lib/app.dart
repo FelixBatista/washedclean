@@ -7,6 +7,7 @@ import 'core/services/favorites_service.dart';
 import 'core/services/ratings_service.dart';
 import 'core/services/auth_service.dart';
 import 'core/services/symbol_service.dart';
+import 'core/services/firestore_service.dart';
 
 class WashedCleanApp extends ConsumerStatefulWidget {
   const WashedCleanApp({super.key});
@@ -24,6 +25,7 @@ class _WashedCleanAppState extends ConsumerState<WashedCleanApp> {
 
   Future<void> _initializeServices() async {
     // Initialize services
+    ref.read(firestoreServiceProvider);
     ref.read(contentServiceProvider);
     ref.read(searchServiceProvider);
     ref.read(favoritesServiceProvider);
