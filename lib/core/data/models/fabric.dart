@@ -25,6 +25,11 @@ class Fabric {
     );
   }
 
+  factory Fabric.fromFirestore(DocumentSnapshot doc) {
+    final data = doc.data() as Map<String, dynamic>;
+    return Fabric.fromJson(data);
+  }
+
   final String id;
   final String name;
   final String image;
@@ -43,12 +48,6 @@ class Fabric {
       'common_stains': commonStains,
       'recommended_products': recommendedProducts,
     };
-  }
-
-  // Firestore serialization
-  factory Fabric.fromFirestore(DocumentSnapshot doc) {
-    final data = doc.data() as Map<String, dynamic>;
-    return Fabric.fromJson(data);
   }
 
   Map<String, dynamic> toFirestore() {

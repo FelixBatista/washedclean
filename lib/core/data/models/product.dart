@@ -32,6 +32,11 @@ class Product {
     );
   }
 
+  factory Product.fromFirestore(DocumentSnapshot doc) {
+    final data = doc.data() as Map<String, dynamic>;
+    return Product.fromJson(data);
+  }
+
   final String id;
   final String name;
   final String image;
@@ -56,12 +61,6 @@ class Product {
       'fits_fabrics': fitsFabrics,
       'affiliate_url': affiliateUrl,
     };
-  }
-
-  // Firestore serialization
-  factory Product.fromFirestore(DocumentSnapshot doc) {
-    final data = doc.data() as Map<String, dynamic>;
-    return Product.fromJson(data);
   }
 
   Map<String, dynamic> toFirestore() {
