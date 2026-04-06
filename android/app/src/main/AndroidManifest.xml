@@ -2,6 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.washedclean.app">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -33,10 +37,10 @@
             android:name="flutterEmbedding"
             android:value="2" />
 
-        <!-- AdMob App ID (placeholder for development) -->
+        <!-- AdMob App ID: test ID by default; set ADMOB_APP_ID in gradle.properties or key.properties -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713" />
+            android:value="${admobAppId}" />
 
         <!-- Resolve AD_SERVICES_CONFIG conflict -->
         <property

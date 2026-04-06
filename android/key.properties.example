@@ -1,0 +1,10 @@
+# Copy this file to key.properties and fill in your values.
+# key.properties is gitignored — never commit real passwords.
+
+storePassword=washedclean
+keyPassword=washedclean
+keyAlias=upload
+storeFile=C:\\Users\\Admin\\washedclean-upload.jks
+
+# Optional — same value as AdMob App ID (overridden by ADMOB_APP_ID in gradle.properties if both set)
+# ADMOB_APP_ID=ca-app-pub-xxxxxxxxxxxxxxxx~yyyyyyyyyy

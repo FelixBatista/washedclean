@@ -1,3 +1,6 @@
+import java.util.Properties
+import java.io.FileInputStream
+
 plugins {
     id "com.android.application"
     // START: FlutterFire Configuration
@@ -5,6 +8,24 @@ plugins {
     // END: FlutterFire Configuration
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
+}
+
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file("key.properties")
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+// Google test App ID — override via android/gradle.properties (ADMOB_APP_ID) or key.properties.
+def admobAppId = "ca-app-pub-3940256099942544~3347511713"
+def admobFromGradle = project.findProperty("ADMOB_APP_ID")
+if (admobFromGradle != null && !admobFromGradle.toString().trim().isEmpty()) {
+    admobAppId = admobFromGradle.toString().trim()
+} else if (keystorePropertiesFile.exists()) {
+    def k = keystoreProperties.getProperty("ADMOB_APP_ID")
+    if (k != null && !k.trim().isEmpty()) {
+        admobAppId = k.trim()
+    }
 }
 
 android {
@@ -33,14 +54,44 @@ android {
         ndkVersion "26.1.10909125"
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion 36
-        versionCode 1
-        versionName "1.0"
+        versionCode flutter.versionCode
+        versionName flutter.versionName
+        manifestPlaceholders += [admobAppId: admobAppId]
+    }
+
+    signingConfigs {
+        release {
+            if (keystorePropertiesFile.exists()) {
+                keyAlias keystoreProperties["keyAlias"]
+                keyPassword keystoreProperties["keyPassword"]
+                storeFile file(keystoreProperties["storeFile"])
+                storePassword keystoreProperties["storePassword"]
+            }
+        }
     }
 
     buildTypes {
         release {
-            signingConfig signingConfigs.debug
+            // Release / Play builds must use the upload keystore — never debug signing.
+            if (keystorePropertiesFile.exists()) {
+                signingConfig signingConfigs.release
+            }
         }
+    }
+}
+
+// Fail fast if someone runs assembleRelease/bundleRelease without key.properties.
+gradle.taskGraph.whenReady { graph ->
+    def runsRelease = graph.allTasks.any { task ->
+        task.project == project &&
+                (task.name == "bundleRelease" || task.name == "assembleRelease")
+    }
+    if (runsRelease && !keystorePropertiesFile.exists()) {
+        throw new GradleException(
+                "Release builds must be signed with your upload keystore (not debug). " +
+                "Create android/key.properties from key.properties.example with storeFile, " +
+                "storePassword, keyAlias, and keyPassword."
+        )
     }
 }
 

@@ -38,6 +38,8 @@ symlinks/
 local.properties
 *.log
 android/.gradle/
+android/key.properties
+**/upload-keystore.jks
 
 # iOS
 Pods/
