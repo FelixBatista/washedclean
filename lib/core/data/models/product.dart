@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class Product {
   const Product({
     required this.id,
@@ -32,11 +30,6 @@ class Product {
     );
   }
 
-  factory Product.fromFirestore(DocumentSnapshot doc) {
-    final data = doc.data() as Map<String, dynamic>;
-    return Product.fromJson(data);
-  }
-
   final String id;
   final String name;
   final String image;
@@ -63,7 +56,4 @@ class Product {
     };
   }
 
-  Map<String, dynamic> toFirestore() {
-    return toJson();
-  }
 }

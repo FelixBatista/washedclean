@@ -1,108 +1,145 @@
 import 'dart:convert';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../data/models/stain.dart';
+import '../data/models/care_symbol.dart';
 import '../data/models/fabric.dart';
 import '../data/models/product.dart';
-import 'firestore_service.dart';
-import 'symbol_service.dart';
+import '../data/models/stain.dart';
+import '../data/models/stain_solution.dart';
+import 'cloudflare_api_service.dart';
 
 final contentServiceProvider = Provider<ContentService>((ref) {
-  return ContentService(ref.watch(firestoreServiceProvider));
+  return ContentService(ref.watch(cloudflareApiServiceProvider));
 });
 
 class ContentService {
-  final FirestoreService _firestoreService;
-  
-  ContentService(this._firestoreService);
-  
+  ContentService(this._apiService);
+
+  final CloudflareApiService _apiService;
+
   List<Stain> _stains = [];
   List<Fabric> _fabrics = [];
   List<Product> _products = [];
   List<CareSymbol> _careSymbols = [];
-
-  bool _isInitialized = false;
-
-  Future<void> initialize() async {
-    if (_isInitialized) return;
-
-    try {
-      // Load data from Firestore
-      _stains = await _firestoreService.getStains();
-      _fabrics = await _firestoreService.getFabrics();
-      _products = await _firestoreService.getProducts();
-      _careSymbols = await _firestoreService.getCareSymbols();
-      
-      _isInitialized = true;
-    } catch (e) {
-      print('Error loading data from Firestore: $e');
-      // Fallback to local data if Firestore fails
-      await _loadLocalData();
-      _isInitialized = true;
-    }
-  }
-
-  Future<void> _loadLocalData() async {
-    try {
-      // Load stains
-      final stainsJson = await rootBundle.loadString('assets/seed/stains.json');
-      final stainsList = json.decode(stainsJson) as List;
-      _stains = stainsList.map((json) => Stain.fromJson(json)).toList();
-
-      // Load fabrics
-      final fabricsJson = await rootBundle.loadString('assets/seed/fabrics.json');
-      final fabricsList = json.decode(fabricsJson) as List;
-      _fabrics = fabricsList.map((json) => Fabric.fromJson(json)).toList();
-
-      // Load products
-      final productsJson = await rootBundle.loadString('assets/seed/products.json');
-      final productsList = json.decode(productsJson) as List;
-      _products = productsList.map((json) => Product.fromJson(json)).toList();
-
-      // Load care symbols
-      final symbolsJson = await rootBundle.loadString('assets/seed/care_symbols.json');
-      final symbolsList = json.decode(symbolsJson) as List;
-      _careSymbols = symbolsList.map((json) => CareSymbol.fromJson(json)).toList();
-    } catch (e) {
-      print('Error loading local data: $e');
-    }
-  }
+  List<StainSolution> _stainSolutions = [];
+  List<Map<String, dynamic>> _articles = [];
+  Future<void>? _initialization;
 
   List<Stain> get stains => _stains;
   List<Fabric> get fabrics => _fabrics;
   List<Product> get products => _products;
   List<CareSymbol> get careSymbols => _careSymbols;
+  List<StainSolution> get stainSolutions => _stainSolutions;
+  List<Map<String, dynamic>> get articles => _articles;
 
-  Stain? getStainById(String id) {
+  Future<void> initialize() => _initialization ??= _loadContent();
+
+  Future<void> _loadContent() async {
+    await _loadBundledContent();
+
     try {
-      return _stains.firstWhere((s) => s.id == id);
-    } catch (e) {
-      return null;
+      final items = await _apiService.getContent();
+      if (items.isEmpty) {
+        throw const CloudflareApiException('The D1 database has no content.');
+      }
+      _assignContent(items);
+      debugPrint('Loaded ${items.length} content records from Cloudflare D1.');
+    } catch (error) {
+      debugPrint('Cloudflare content is unavailable. Using bundled data: $error');
     }
   }
 
-  Fabric? getFabricById(String id) {
-    try {
-      return _fabrics.firstWhere((f) => f.id == id);
-    } catch (e) {
-      return null;
+  void _assignContent(List<Map<String, dynamic>> items) {
+    final grouped = <String, List<Map<String, dynamic>>>{};
+    for (final item in items) {
+      final type = item['type'] as String;
+      final data = Map<String, dynamic>.from(item['data'] as Map);
+      grouped.putIfAbsent(type, () => []).add(data);
     }
+
+    _stains = _recordsOf(grouped, 'stains').map(Stain.fromJson).toList();
+    _fabrics = _recordsOf(grouped, 'fabrics').map(Fabric.fromJson).toList();
+    _products = _recordsOf(grouped, 'products').map(Product.fromJson).toList();
+    _careSymbols = _recordsOf(grouped, 'care_symbols')
+        .map(CareSymbol.fromJson)
+        .toList();
+    _stainSolutions = _recordsOf(grouped, 'stain_solutions')
+        .map(StainSolution.fromJson)
+        .toList();
+    _articles = _recordsOf(grouped, 'articles');
   }
 
-  Product? getProductById(String id) {
-    try {
-      return _products.firstWhere((p) => p.id == id);
-    } catch (e) {
-      return null;
-    }
+  List<Map<String, dynamic>> _recordsOf(
+    Map<String, List<Map<String, dynamic>>> grouped,
+    String type,
+  ) {
+    return grouped[type] ?? const [];
   }
 
-  CareSymbol? getCareSymbolById(String id) {
-    try {
-      return _careSymbols.firstWhere((s) => s.id == id);
-    } catch (e) {
-      return null;
+  Future<void> _loadBundledContent() async {
+    final stains = await rootBundle.loadString('assets/seed/stains.json');
+    _stains = _decodeList(stains).map(Stain.fromJson).toList();
+
+    final fabrics = await rootBundle.loadString('assets/seed/fabrics.json');
+    _fabrics = _decodeList(fabrics).map(Fabric.fromJson).toList();
+
+    final products = await rootBundle.loadString('assets/seed/products.json');
+    _products = _decodeList(products).map(Product.fromJson).toList();
+
+    final careSymbols = await rootBundle.loadString(
+      'assets/seed/care_symbols.json',
+    );
+    _careSymbols = _decodeList(careSymbols).map(CareSymbol.fromJson).toList();
+
+    final articles = await rootBundle.loadString('assets/seed/articles.json');
+    _articles = _decodeList(articles);
+
+    final solutionLines = await rootBundle.loadString(
+      'Content/stain_solutions.jsonl',
+    );
+    _stainSolutions = solutionLines
+        .split('\n')
+        .where((line) => line.trim().isNotEmpty)
+        .map((line) => jsonDecode(line) as Map<String, dynamic>)
+        .map((solution) => StainSolution.fromJson({
+              ...solution,
+              'id': solution['id'] ?? _solutionId(solution['title'] as String),
+            }))
+        .toList();
+  }
+
+  List<Map<String, dynamic>> _decodeList(String source) {
+    final decoded = jsonDecode(source) as List<dynamic>;
+    return decoded.cast<Map<String, dynamic>>();
+  }
+
+  String _solutionId(String title) {
+    return title
+        .toLowerCase()
+        .replaceAll(RegExp(r'[^\w\s-]'), '')
+        .replaceAll(RegExp(r'\s+'), '_')
+        .replaceAll(RegExp(r'_+'), '_')
+        .trim();
+  }
+
+  Stain? getStainById(String id) => _findById(_stains, (item) => item.id, id);
+
+  Fabric? getFabricById(String id) =>
+      _findById(_fabrics, (item) => item.id, id);
+
+  Product? getProductById(String id) =>
+      _findById(_products, (item) => item.id, id);
+
+  CareSymbol? getCareSymbolById(String id) =>
+      _findById(_careSymbols, (item) => item.id, id);
+
+  T? _findById<T>(List<T> records, String Function(T) getId, String id) {
+    for (final record in records) {
+      if (getId(record) == id) return record;
     }
+    return null;
   }
 }

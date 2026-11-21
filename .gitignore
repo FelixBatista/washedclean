@@ -62,9 +62,14 @@ macos/Flutter/ephemeral/
 macos/Pods/
 
 # Web
-lib/generated_plugin_registrant.dart
 web/.dart_tool/
 web/.flutter-plugins
+
+# Cloudflare local build output and dependency installs
+.cloudflare/
+.dev.vars*
+node_modules/
+.wrangler/
 
 # Other IDEs and editors
 *.swp
@@ -82,7 +87,7 @@ desktop.ini
 .env
 .env.*
 
-# Firebase / Google services (optional — ignore if sensitive)
+# Local platform credentials
 google-services.json
 GoogleService-Info.plist
 lib/firebase_options.dart

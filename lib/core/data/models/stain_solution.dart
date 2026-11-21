@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class StainSolution {
   const StainSolution({
     required this.id,
@@ -52,15 +50,6 @@ class StainSolution {
     };
   }
 
-  // Firestore serialization
-  factory StainSolution.fromFirestore(DocumentSnapshot doc) {
-    final data = doc.data() as Map<String, dynamic>;
-    return StainSolution.fromJson({...data, 'id': doc.id});
-  }
-
-  Map<String, dynamic> toFirestore() {
-    return toJson();
-  }
 }
 
 class SolutionSection {

@@ -1,6 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 import 'content_service.dart';
 import 'favorites_service.dart';
@@ -21,9 +20,6 @@ class AppBootstrapService {
     print('🚀 Starting app initialization...');
     
     try {
-      // Initialize Firebase (optional - continues if fails)
-      await _initializeFirebase();
-      
       // Initialize SharedPreferences
       await _initializeSharedPreferences();
       
@@ -38,17 +34,6 @@ class AppBootstrapService {
       print('❌ App initialization failed: $e');
       // Don't rethrow - let the app continue even if some services fail
       print('⚠️ Continuing with limited functionality...');
-    }
-  }
-
-  Future<void> _initializeFirebase() async {
-    try {
-      print('📱 Initializing Firebase...');
-      await Firebase.initializeApp();
-      print('✅ Firebase initialized');
-    } catch (e) {
-      print('⚠️ Firebase initialization failed (continuing without Firebase): $e');
-      // Continue without Firebase - this is optional for development
     }
   }
 
