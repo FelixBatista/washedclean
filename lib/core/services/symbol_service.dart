@@ -1,83 +1,8 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
-class CareSymbol {
-  const CareSymbol({
-    required this.id,
-    required this.name,
-    required this.description,
-    required this.category,
-    required this.fileName,
-    required this.isoCode,
-    this.temperature,
-    this.instructions,
-  });
+import '../data/models/care_symbol.dart';
 
-  factory CareSymbol.fromJson(Map<String, dynamic> json) {
-    return CareSymbol(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      description: json['description'] as String,
-      category: json['category'] as String,
-      fileName: json['fileName'] as String,
-      isoCode: json['isoCode'] as String,
-      temperature: json['temperature'] as int?,
-      instructions: json['instructions'] as String?,
-    );
-  }
-
-  final String id;
-  final String name;
-  final String description;
-  final String category;
-  final String fileName;
-  final String isoCode;
-  final int? temperature;
-  final String? instructions;
-
-  String get assetPath => 'assets/symbols/$fileName';
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'description': description,
-      'category': category,
-      'fileName': fileName,
-      'isoCode': isoCode,
-      'temperature': temperature,
-      'instructions': instructions,
-    };
-  }
-
-  // Firestore serialization
-  factory CareSymbol.fromFirestore(DocumentSnapshot doc) {
-    final data = doc.data() as Map<String, dynamic>;
-    return CareSymbol(
-      id: data['id'] as String,
-      name: data['name'] as String,
-      description: data['description'] as String,
-      isoCode: data['iso_code'] as String,
-      category: data['category'] as String,
-      temperature: data['temperature'] as int?,
-      instructions: data['instructions'] as String?,
-      fileName: data['file_name'] as String,
-    );
-  }
-
-  Map<String, dynamic> toFirestore() {
-    return {
-      'id': id,
-      'name': name,
-      'description': description,
-      'iso_code': isoCode,
-      'category': category,
-      'temperature': temperature,
-      'instructions': instructions,
-      'file_name': fileName,
-    };
-  }
-}
+export '../data/models/care_symbol.dart';
 
 enum SymbolCategory {
   washing,

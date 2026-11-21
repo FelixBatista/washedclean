@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -239,10 +240,12 @@ class CameraScreen extends HookConsumerWidget {
   ) async {
     try {
       // Request camera permission
-      final permission = await Permission.camera.request();
-      if (!permission.isGranted) {
-        errorMessage.value = 'Camera permission denied';
-        return;
+      if (!kIsWeb) {
+        final permission = await Permission.camera.request();
+        if (!permission.isGranted) {
+          errorMessage.value = 'Camera permission denied';
+          return;
+        }
       }
 
       // Get available cameras

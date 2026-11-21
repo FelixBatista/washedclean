@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class Fabric {
   const Fabric({
     required this.id,
@@ -25,11 +23,6 @@ class Fabric {
     );
   }
 
-  factory Fabric.fromFirestore(DocumentSnapshot doc) {
-    final data = doc.data() as Map<String, dynamic>;
-    return Fabric.fromJson(data);
-  }
-
   final String id;
   final String name;
   final String image;
@@ -50,7 +43,4 @@ class Fabric {
     };
   }
 
-  Map<String, dynamic> toFirestore() {
-    return toJson();
-  }
 }

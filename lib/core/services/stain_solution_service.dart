@@ -1,91 +1,79 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:flutter/foundation.dart';
 
 import '../data/models/stain_solution.dart';
-import 'firestore_service.dart';
+import 'content_service.dart';
 
 final stainSolutionServiceProvider = Provider<StainSolutionService>((ref) {
-  return StainSolutionService(ref.watch(firestoreServiceProvider));
+  return StainSolutionService(ref.watch(contentServiceProvider));
 });
 
 final stainSolutionsProvider = FutureProvider<List<StainSolution>>((ref) async {
-  final service = ref.watch(stainSolutionServiceProvider);
-  return await service.getStainSolutions();
+  return ref.watch(stainSolutionServiceProvider).getStainSolutions();
 });
 
-final stainSolutionByIdProvider = FutureProvider.family<StainSolution?, String>((ref, id) async {
-  final service = ref.watch(stainSolutionServiceProvider);
-  return await service.getStainSolutionById(id);
+final stainSolutionByIdProvider =
+    FutureProvider.family<StainSolution?, String>((ref, id) async {
+  return ref.watch(stainSolutionServiceProvider).getStainSolutionById(id);
 });
 
-final stainSolutionByTitleProvider = FutureProvider.family<StainSolution?, String>((ref, title) async {
-  final service = ref.watch(stainSolutionServiceProvider);
-  return await service.getStainSolutionByTitle(title);
+final stainSolutionByTitleProvider =
+    FutureProvider.family<StainSolution?, String>((ref, title) async {
+  return ref.watch(stainSolutionServiceProvider).getStainSolutionByTitle(title);
 });
 
 class StainSolutionService {
-  StainSolutionService(this._firestoreService);
+  StainSolutionService(this._contentService);
 
-  final FirestoreService _firestoreService;
-  List<StainSolution> _cachedSolutions = [];
-  bool _isInitialized = false;
+  final ContentService _contentService;
 
-  Future<void> initialize() async {
-    if (_isInitialized) return;
-    
-    try {
-      _cachedSolutions = await _firestoreService.getStainSolutions();
-      _isInitialized = true;
-    } catch (e) {
-      debugPrint('Error initializing stain solutions: $e');
-    }
+  Future<void>? _initialization;
+  List<StainSolution> _solutions = [];
+
+  Future<void> _initialize() async {
+    await _contentService.initialize();
+    _solutions = _contentService.stainSolutions;
   }
 
+  Future<void> _ensureInitialized() => _initialization ??= _initialize();
+
   Future<List<StainSolution>> getStainSolutions() async {
-    if (!_isInitialized) {
-      await initialize();
-    }
-    return _cachedSolutions;
+    await _ensureInitialized();
+    return _solutions;
   }
 
   Future<StainSolution?> getStainSolutionById(String id) async {
-    if (!_isInitialized) {
-      await initialize();
+    await _ensureInitialized();
+    for (final solution in _solutions) {
+      if (solution.id == id) return solution;
     }
-    
-    try {
-      return _cachedSolutions.firstWhere((solution) => solution.id == id);
-    } catch (e) {
-      // If not found in cache, try Firestore
-      return await _firestoreService.getStainSolutionById(id);
-    }
+    return null;
   }
 
   Future<StainSolution?> getStainSolutionByTitle(String title) async {
-    if (!_isInitialized) {
-      await initialize();
+    await _ensureInitialized();
+    final normalizedTitle = title.trim().toLowerCase();
+    for (final solution in _solutions) {
+      if (solution.title.trim().toLowerCase() == normalizedTitle) {
+        return solution;
+      }
     }
-    
-    try {
-      return _cachedSolutions.firstWhere(
-        (solution) => solution.title.toLowerCase() == title.toLowerCase(),
-      );
-    } catch (e) {
-      // If not found in cache, try Firestore
-      return await _firestoreService.getStainSolutionByTitle(title);
-    }
+    return null;
   }
 
   List<StainSolution> searchSolutions(String query) {
-    final lowerQuery = query.toLowerCase();
-    return _cachedSolutions.where((solution) {
-      return solution.title.toLowerCase().contains(lowerQuery) ||
-          solution.introNotes.any((note) => note.toLowerCase().contains(lowerQuery));
+    final normalizedQuery = query.trim().toLowerCase();
+    if (normalizedQuery.isEmpty) return _solutions;
+
+    return _solutions.where((solution) {
+      return solution.title.toLowerCase().contains(normalizedQuery) ||
+          solution.introNotes.any(
+            (note) => note.toLowerCase().contains(normalizedQuery),
+          );
     }).toList();
   }
 
   Future<void> refresh() async {
-    _cachedSolutions = await _firestoreService.getStainSolutions();
+    _initialization = null;
+    await _ensureInitialized();
   }
 }
-

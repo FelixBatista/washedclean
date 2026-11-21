@@ -33,7 +33,7 @@ class StainScreen extends HookConsumerWidget {
     final selectedFabricId = useState(fabricId);
     final isFavorite = ref.watch(favoritesServiceProvider).contains(stainId);
 
-    // Load stain solution from Firebase
+    // Load the detailed guide from Cloudflare D1 or the bundled offline data.
     final stainSolutionAsync = ref.watch(stainSolutionByTitleProvider(stain?.name ?? ''));
 
     if (stain == null) {
@@ -223,7 +223,7 @@ class StainScreen extends HookConsumerWidget {
               ),
             ],
             
-            // Detailed Solutions from Firebase
+            // Detailed removal guide
             stainSolutionAsync.when(
               data: (solution) {
                 if (solution != null) {
